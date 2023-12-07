@@ -16,7 +16,12 @@
     ~/.config/lemonade.toml: ./lemonade.toml
     ~/.config/tmux-powerline: ./tmux-powerline
     ~/.config/tmux-powerline/config.sh: ./private/tmux_powerline_config.sh
-    ~/.config/tms/default-config.toml: ./private/tms-default-config.toml
+    ~/.config/tms/default-config.toml:
+      if: 'uname -a | grep -qi -v Darwin'
+      path: ./private/tms-default-config.toml
+    ~/Library/Application Support/rs.tms/default-config.toml:
+      if: 'uname -a | grep -qi Darwin'
+      path: ./private/tms-default-config.toml
     ~/.gitconfig: ./private/.gitconfig
     ~/.gitconfig.d: ./private/.gitconfig.d
     ~/.tmux.conf: ./tmux.conf
