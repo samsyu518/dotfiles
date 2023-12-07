@@ -122,17 +122,6 @@ export PATH="$HOME/.cargo/bin/:$PATH"
 
 export RIPGREP_CONFIG_PATH=".ripgreprc"
 
-python_venv() {
-  VENV_PATH=".venv"
-  # when you cd into a folder that contains $VENV_PATH
-  [[ -d $VENV_PATH ]] && source $VENV_PATH/bin/activate > /dev/null 2>&1
-  # when you cd into a folder that doesn't
-  [[ ! -d $VENV_PATH ]] && deactivate > /dev/null 2>&1
-}
-autoload -U add-zsh-hook
-add-zsh-hook chpwd python_venv
-
-python_venv
 # pyenv
 #eval "$(pyenv virtualenv-init -)"
 
@@ -174,4 +163,16 @@ fi
 source ~/.private/private.sh
 
 setopt complete_aliases
+
+python_venv() {
+  VENV_PATH=".venv"
+  # when you cd into a folder that contains $VENV_PATH
+  [[ -d $VENV_PATH ]] && source $VENV_PATH/bin/activate > /dev/null 2>&1
+  # when you cd into a folder that doesn't
+  [[ ! -d $VENV_PATH ]] && deactivate > /dev/null 2>&1
+}
+autoload -U add-zsh-hook
+add-zsh-hook chpwd python_venv
+
+python_venv
 #macchina
