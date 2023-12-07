@@ -1,0 +1,14 @@
+# exclude everything
+private/*
+
+# exception to the rule
+!private/.init
+
+.tool-versions
+
+.spacemacs.env
+
+.spacemacs.d/emacs-custom-settings.el
+nvim/lazy-lock.json
+nvim/.luarc.json
+tmux-powerline/config.sh

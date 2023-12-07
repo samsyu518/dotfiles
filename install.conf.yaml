@@ -1,0 +1,26 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean:
+    ~/:
+      force: false
+    ~/.config:
+      recursive: true
+
+- link:
+    ~/.zshrc: zshrc
+    ~/.private: private
+    ~/.config/nvim: nvim
+    ~/.config/lemonade.toml: lemonade.toml
+    ~/.config/tmux-powerline: tmux-powerline
+    ~/.config/tmux-powerline/config.sh: private/tmux_powerline_config.sh
+    ~/.gitconfig: private/.gitconfig
+    ~/.gitconfig.d: private/.gitconfig.d
+    ~/.tmux.conf: tmux.conf
+    ~/.local/bin/nvim_paste:
+      if: 'uname -r | grep -qi microsoft' 
+      path: nvim_paste
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

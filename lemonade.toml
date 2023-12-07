@@ -1,0 +1,6 @@
+port = 1234
+allow = '127.0.0.1/32'
+line-ending = 'crlf'
+host = '127.0.0.1'
+trans-loopback = true
+trans-localfile = true

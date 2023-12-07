@@ -1,0 +1,15 @@
+# Search hidden files / directories (e.g. dotfiles) by default
+--hidden
+--no-ignore
+
+--no-heading
+--with-filename
+--line-number
+--column
+
+# Using glob patterns to include/exclude files or folders
+--glob=!.git
+--glob=!dotbot
+
+# Because who cares about case!?
+--smart-case
