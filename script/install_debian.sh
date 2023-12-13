@@ -14,7 +14,7 @@ bash ./tools/install_ohmyzsh.sh
 
 # poetry
 curl -sSL https://install.python-poetry.org | python3 -
-
+export PATH="/home/$USER/.local/bin:$PATH"
 
 # sync tools
 sudo apt-get -y install restic rclone rsync
