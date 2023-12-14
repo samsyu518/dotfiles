@@ -31,6 +31,13 @@ yay -S --noconfirm neofetch emacs macchina-bin lazygit \
     ripgrep the_silver_searcher fd locate ttf-fira-code \
     clj-kondo-bin rlwrap clojure jdk-openjdk \
     yarn nodejs npm htop btop glances jq less net-tools lsof ncdu rustup go
+    #
+# font install
+yay -S adobe-source-han-sans-otc-fonts adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts \
+    wqy-microhei wqy-microhei-lite wqy-bitmapfont wqy-zenhei \
+    ttf-arphic-ukai ttf-arphic-uming noto-fonts-cjk \
+    opendesktop-fonts noto-fonts-emoji \
+    ttf-firacode-nerd ttf-jetbrains-mono-nerd
 
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER
