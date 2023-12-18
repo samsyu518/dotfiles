@@ -30,8 +30,8 @@ yay -S --noconfirm neofetch emacs macchina-bin lazygit \
     docker docker-compose mysql-clients erlang elixir aspell-en aspell xsel \
     ripgrep the_silver_searcher fd locate ttf-fira-code \
     clj-kondo-bin rlwrap clojure jdk-openjdk \
-    yarn nodejs npm htop btop glances jq less net-tools lsof ncdu rustup go
-    #
+    yarn nodejs npm htop btop glances jq less net-tools lsof ncdu rustup go redis
+ 
 # font install
 yay -S adobe-source-han-sans-otc-fonts adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts \
     wqy-microhei wqy-microhei-lite wqy-bitmapfont wqy-zenhei \
