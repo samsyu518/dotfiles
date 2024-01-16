@@ -6,12 +6,6 @@ asdf plugin add python
 asdf plugin add nodejs
 asdf plugin add golang
 
-# if need check version
-# asdf list all python
-asdf install python 3.8.18
-asdf install python 3.10.13
-asdf install python 3.11.6
-asdf install python 3.12.0
 distro_info=$(cat /etc/*-release 2>/dev/null)
 
 # Check for Arch Linux
@@ -36,12 +30,18 @@ else
     echo "Unsupported distribution: Unable to determine distribution information."
 fi
 
-asdf install erlang 24.3.4.14
-asdf install elixir 1.16.0-otp-24
+# if need check version
+# asdf list all python
+asdf install python 3.8.18
+asdf install python 3.10.13
+asdf install python 3.11.7
+asdf install python 3.12.1
+asdf install erlang 24.3.4.15
+asdf install elixir 1.15.7-otp-26
 asdf install erlang 26.2.1
 asdf install elixir 1.16.0-otp-26
-asdf install nodejs 20.9.0
-asdf install golang 1.21.4
+asdf install nodejs 21.6.0
+asdf install golang 1.21.6
 
 if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global python system
@@ -50,10 +50,10 @@ if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global nodejs system
     asdf global golang system
 else
-    asdf global python 3.11.6
+    asdf global python 3.11.7
     asdf global erlang 26.2.1
-    asdf global elixir 1.16.0-otp-26
-    asdf global nodejs 20.9.0
-    asdf global golang 1.21.4
+    asdf global elixir 1.15.7-otp-26
+    asdf global nodejs 21.6.0
+    asdf global golang 1.21.6
 fi
 
