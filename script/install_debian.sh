@@ -32,11 +32,11 @@ rclone genautocomplete zsh ~/.oh-my-zsh/custom/plugins/rclone/_rclone
 bash ./tools/install_tmux.sh
 mkdir -p ~/.tmux/plugins/
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-bash ./tools/install_debian_neovim.sh
 bash ./tools/install_lazygit.sh
-bash ./tools/install_debian_docker.sh
-bash ./tools/install_debian_rust.sh
 bash ./tools/install_asdf.sh
+bash ./tools/install_debian_docker.sh
+bash ./tools/install_debian_neovim.sh
+bash ./tools/install_debian_rust.sh
 
 # dotfile install
 (cd ../ && ./install)
