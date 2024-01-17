@@ -27,7 +27,18 @@ sudo apt-get update
 
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 mkdir -p ~/.local/bin/
-curl -SL https://github.com/docker/compose/releases/download/v2.23.1/docker-compose-linux-x86_64 -o ~/.local/bin/docker-compose
+arch=$(uname -m)
+
+if [ "$arch" == "x86_64" ]; then
+  DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64"
+elif [ "$arch" == "aarch64" ]; then
+  DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-aarch64"
+else
+    echo "Unsupported architecture: $arch"
+    exit 1
+fi
+
+curl -SL $DOCKER_COMPOSE_URL -o ~/.local/bin/docker-compose
 chmod +x ~/.local/bin/docker-compose
 
 sudo usermod -aG docker $USER
