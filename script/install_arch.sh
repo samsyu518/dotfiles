@@ -34,7 +34,7 @@ yay -S --noconfirm neofetch emacs macchina-bin lazygit \
     google-cloud-cli inotify-tools
  
 # font install
-yay -S adobe-source-han-sans-otc-fonts adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts \
+yay -S --noconfirm adobe-source-han-sans-otc-fonts adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts \
     wqy-microhei wqy-microhei-lite wqy-bitmapfont wqy-zenhei \
     ttf-arphic-ukai ttf-arphic-uming noto-fonts-cjk \
     opendesktop-fonts noto-fonts-emoji \
