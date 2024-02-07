@@ -15,7 +15,7 @@ return {
       vim.defer_fn(function()
         require('nvim-treesitter.configs').setup {
           -- Add languages to be installed here that you want installed for treesitter
-          ensure_installed = { 'c', 'cpp', 'elixir', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' ,'heex','html'},
+          ensure_installed = { 'c', 'cpp', 'elixir', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'heex', 'html' },
 
           -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
           auto_install = false,
@@ -28,7 +28,7 @@ return {
               init_selection = '<c-space>',
               node_incremental = '<c-space>',
               scope_incremental = '<c-s>',
-              node_decremental = '<M-space>',
+              node_decremental = '<c-x>',
             },
           },
           textobjects = {

@@ -127,7 +127,7 @@ return {
           }
         end,
       }
-      local null_ls_servers = { 'javascript', 'typescript', 'lua', 'python' }
+      local null_ls_servers = { 'javascript', 'typescript', 'lua', 'python', 'elixir' }
       lsp_zero.format_mapping('gq', {
         format_opts = {
           async = true,
@@ -156,6 +156,7 @@ return {
           'eslint_d',
           'stylua',
           'mypy',
+          'elixirls',
         },
         automatic_installation = false,
         handlers = {},
@@ -172,6 +173,7 @@ return {
           null_ls.builtins.diagnostics.eslint,
           null_ls.builtins.diagnostics.ruff,
           null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.mix,
         },
       }
     end,
