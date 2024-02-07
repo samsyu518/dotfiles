@@ -111,7 +111,7 @@ alias vi=nvim
 alias sshlemon="ssh -R 1234:127.0.0.1:1234"
 alias cvenv="python -m venv .venv"
 
-export VISUAL="nvim"
+export VISUAL="vim"
 
 # Zsh poetry
 export PATH="$HOME/.local/bin:$PATH"

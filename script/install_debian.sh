@@ -7,7 +7,7 @@ sudo apt-get -y install cmake make build-essential ninja-build gettext libssl-de
 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
 libtool-bin libvterm-dev \
-ripgrep jq unzip zsh git htop zip p7zip-full ncdu redis-tools inotify-tools
+ripgrep jq unzip zsh git htop zip p7zip-full ncdu redis-tools inotify-tools vim
 
 # ohmyzsh
 bash ./tools/install_ohmyzsh.sh
