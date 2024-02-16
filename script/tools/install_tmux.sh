@@ -22,7 +22,7 @@ set -o errexit
 #
 # Specify tmux version to upgrade
 #   - Releases: https://github.com/tmux/tmux/releases
-TARGET_VERSION="3.3a"
+TARGET_VERSION="3.4"
 TARGET_DIRECTORY="/usr/local/bin"
 #
 #################################################################
