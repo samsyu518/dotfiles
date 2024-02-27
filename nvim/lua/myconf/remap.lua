@@ -25,8 +25,11 @@ vim.keymap.set({ 'n', 'v' }, 'c', [["_c]])
 -- quick file replace
 vim.keymap.set('n', '<leader>fs', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- vim.keymap.set('v', '<leader>fs', [["zy:%s/\<<C-r>z\>/<C-r>z/gc<left><left><left>]])
--- c:\program files\vim  for test replace fcvf<Space>;<Space>fs
 --[[ 
+for test replace vf\;<Space>fs
+c:\program files\vim 
+c:\program files\neovim 
+
 escape(@z, ' \/') escapes the contents of register z .
 <C-r>= is used to evaluate the expression inside escape(@z, '\/').
 <CR> is used to close the expression evaluation ]]
