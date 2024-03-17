@@ -37,23 +37,22 @@ asdf install python 3.10.13
 asdf install python 3.11.7
 asdf install python 3.12.1
 asdf install erlang 24.3.4.15
-asdf install elixir 1.15.7-otp-26
-asdf install erlang 26.2.1
-asdf install elixir 1.16.0-otp-26
+asdf install erlang 26.2.3
 asdf install nodejs 21.6.0
 asdf install golang 1.21.6
 
 if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global python system
     asdf global erlang system
-    asdf global elixir system
     asdf global nodejs system
     asdf global golang system
 else
     asdf global python 3.11.7
-    asdf global erlang 26.2.1
-    asdf global elixir 1.15.7-otp-26
+    asdf global erlang 26.2.3
     asdf global nodejs 21.6.0
     asdf global golang 1.21.6
 fi
 
+asdf install elixir ref:v1.16.2
+asdf install elixir ref:v1.15.7
+asdf global elixir ref:v1.16.2
