@@ -15,56 +15,11 @@ require('lazy').setup({
   spec = {
     -- NOTE: First, some plugins that don't require any configuration
 
-    -- Git related plugins
-    'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
-
     -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
 
     -- Useful plugin to show you pending keybinds.
     { 'folke/which-key.nvim', opts = {}, event = 'VeryLazy' },
-    {
-      -- Adds git related signs to the gutter, as well as utilities for managing changes
-      'lewis6991/gitsigns.nvim',
-      event = 'VeryLazy',
-      opts = {
-        -- See `:help gitsigns.txt`
-        signs = {
-          add = { text = '+' },
-          change = { text = '~' },
-          delete = { text = '_' },
-          topdelete = { text = '‾' },
-          changedelete = { text = '~' },
-        },
-        current_line_blame = true,
-        on_attach = function(bufnr)
-          vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
-
-          -- don't override the built-in and fugitive keymaps
-          local gs = package.loaded.gitsigns
-          vim.keymap.set({ 'n', 'v' }, ']c', function()
-            if vim.wo.diff then
-              return ']c'
-            end
-            vim.schedule(function()
-              gs.next_hunk()
-            end)
-            return '<Ignore>'
-          end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-          vim.keymap.set({ 'n', 'v' }, '[c', function()
-            if vim.wo.diff then
-              return '[c'
-            end
-            vim.schedule(function()
-              gs.prev_hunk()
-            end)
-            return '<Ignore>'
-          end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
-        end,
-      },
-    },
-
     -- {
     --   -- Theme inspired by Atom
     --   'navarasu/onedark.nvim',
@@ -276,13 +231,7 @@ require('lazy').setup({
             'Classic',
             'TempFloatingWindow', --# implies LongTempFloatingWindow, which has no effect on its own
           },
-          --# customize highlight groups (setting this overrides colorscheme)
-          snipruncolors = {
-            SniprunVirtualTextOk = { bg = '#66eeff', fg = '#000000', ctermbg = 'Cyan', cterfg = 'Black' },
-            SniprunFloatingWinOk = { fg = '#66eeff', ctermfg = 'Cyan' },
-            SniprunVirtualTextErr = { bg = '#881515', fg = '#000000', ctermbg = 'DarkRed', cterfg = 'Black' },
-            SniprunFloatingWinErr = { fg = '#881515', ctermfg = 'DarkRed' },
-          },
+
           live_mode_toggle = 'off', --# live mode toggle, see Usage - Running for more info
           --# miscellaneous compatibility/adjustement settings
           inline_messages = false, --# boolean toggle for a one-line way to display messages

@@ -31,7 +31,7 @@ c:\program files\vim
 c:\program files\neovim 
 
 escape(@z, ' \/') escapes the contents of register z .
-<C-r>= is used to evaluate the expression inside escape(@z, '\/').
+<C-r>= is used to evaluate the expression inside escape(@z, ' \/').
 <CR> is used to close the expression evaluation ]]
 vim.keymap.set('v', '<leader>fs', [["zy:%s/<C-r>=escape(@z, ' \/')<CR>/<C-r>=escape(@z, ' \/')<CR>/gc<left><left><left>]])
 
