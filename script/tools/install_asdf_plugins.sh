@@ -32,14 +32,14 @@ fi
 
 # if need check version
 # asdf list all python
-asdf install python 3.8.18
-asdf install python 3.10.13
-asdf install python 3.11.7
-asdf install python 3.12.1
-asdf install erlang 24.3.4.15
+asdf install python 3.8.19
+asdf install python 3.10.14
+asdf install python 3.11.8
+asdf install python 3.12.2
+asdf install erlang 24.3.4.16
 asdf install erlang 26.2.3
-asdf install nodejs 21.6.0
-asdf install golang 1.21.6
+asdf install nodejs 21.7.1
+asdf install golang 1.22.1
 
 if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global python system
@@ -47,7 +47,7 @@ if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global nodejs system
     asdf global golang system
 else
-    asdf global python 3.11.7
+    asdf global python 3.11.8
     asdf global erlang 26.2.3
     asdf global nodejs 21.6.0
     asdf global golang 1.21.6
