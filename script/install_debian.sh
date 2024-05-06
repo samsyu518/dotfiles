@@ -7,7 +7,8 @@ sudo apt-get -y install cmake make build-essential ninja-build gettext libssl-de
 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
 libtool-bin libvterm-dev \
-ripgrep jq unzip zsh git htop zip p7zip-full ncdu redis-tools inotify-tools vim
+ripgrep jq unzip zsh git htop zip p7zip-full ncdu redis-tools inotify-tools vim \
+fzf
 
 # ohmyzsh
 bash ./tools/install_ohmyzsh.sh
@@ -47,4 +48,3 @@ sudo chsh -s $(which zsh) $USER
 bash ./tools/install_asdf_plugins.sh
 
 export PATH="$HOME/.cargo/bin/:$PATH"
-cargo install tmux-sessionizer

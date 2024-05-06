@@ -29,9 +29,9 @@ rclone genautocomplete zsh ~/.oh-my-zsh/custom/plugins/rclone/_rclone
 yay -S --noconfirm neofetch emacs macchina-bin lazygit \
     docker docker-compose mysql-clients erlang elixir aspell-en aspell xsel \
     ripgrep the_silver_searcher fd locate ttf-fira-code \
-    clj-kondo-bin rlwrap clojure jdk-openjdk \
+    clj-kondo-bin rlwrap clojure leiningen jdk-openjdk \
     yarn nodejs npm htop btop glances jq less net-tools lsof ncdu rustup go redis \
-    google-cloud-cli inotify-tools
+    google-cloud-cli inotify-tools bind fzf
  
 # font install
 yay -S --noconfirm adobe-source-han-sans-otc-fonts adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts \
@@ -56,4 +56,3 @@ sudo chsh -s $(which zsh) $USER
 bash ./tools/install_asdf_plugins.sh
 
 export PATH="$HOME/.cargo/bin/:$PATH"
-cargo install tmux-sessionizer

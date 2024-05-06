@@ -119,6 +119,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.cargo/bin/:$PATH"
+# zsh script
+export PATH="$HOME/dotfiles/zsh/script/:$PATH"
 
 export RIPGREP_CONFIG_PATH=".ripgreprc"
 
@@ -161,6 +163,20 @@ fi
 
 # podman -v >/dev/null 2>&1 && export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 source ~/.private/private.sh
+# Path to the directory containing Zsh files to be sourced
+source_dir="$HOME/dotfiles/zsh/include"
+
+# Get a list of all .zsh files in the source directory
+sources=("$source_dir"/*.zsh)
+
+# Loop through each file and source it
+for s in "${sources[@]}"; do
+    if [ -f "$s" ]; then
+        source "$s"
+    else
+        echo "File not found: $s"
+    fi
+done
 
 setopt complete_aliases
 
