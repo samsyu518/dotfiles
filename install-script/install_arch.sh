@@ -25,6 +25,8 @@ restic generate --zsh-completion ~/.oh-my-zsh/custom/plugins/restic/_restic
 mkdir -p ~/.oh-my-zsh/custom/plugins/rclone/
 rclone genautocomplete zsh ~/.oh-my-zsh/custom/plugins/rclone/_rclone
 
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+
 # develop tools
 yay -S --noconfirm neofetch emacs macchina-bin lazygit \
     docker docker-compose mysql-clients erlang elixir aspell-en aspell xsel \

@@ -13,16 +13,19 @@ fcd() {
 fcdh () {
   cd $(fd --type d --max-depth=5  . ~/ | fzf)
 }
-
+fps() {
+  ps -ef |
+  fzf --bind 'ctrl-r:reload(ps -ef)' \
+      --header 'Press CTRL-R to reload' --header-lines=1 \
+      --height=50% --layout=reverse
+}
 # fkill - kill process
 fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs sudo kill -${1:-9}
-  fi
+  (date; ps -ef) |
+  fzf --bind='ctrl-r:reload(date; ps -ef)' \
+      --header=$'Press CTRL-R to reload\n\n' --header-lines=2 \
+      --preview='echo {}' --preview-window=down,3,wrap \
+      --layout=reverse --height=80% | awk '{print $2}' | sudo xargs kill -9
 }
 
 ftpane() {
@@ -129,3 +132,4 @@ sshf () {
     ssh "$selected_host"
   fi
 }
+
