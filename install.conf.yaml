@@ -10,7 +10,7 @@
       recursive: true
 
 - link:
-    ~/.zshrc: ./zshrc
+    ~/.zshrc: ./zsh/zshrc
     ~/.config/nvim: ./nvim
     ~/.config/lemonade.toml: ./lemonade.toml
     ~/.config/tmux-powerline: ./tmux-powerline
