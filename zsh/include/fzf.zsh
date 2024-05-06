@@ -5,9 +5,13 @@ fhistory() {
 
 # fcd - cd into the directory of the selected file
 fcd() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+  local file
+  local dir
+  file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+fcdh () {
+  cd $(fd --type d --max-depth=5  . ~/ | fzf)
 }
 
 # fkill - kill process
@@ -64,3 +68,64 @@ fts() {
   session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
 }
 
+
+# Install packages using yay (change to pacman/AUR helper of your choice)
+function fyayins() {
+    yay -Slq | fzf -q "$1" -m --preview 'yay -Si {1}'| xargs -ro yay -S
+}
+# Remove installed packages (change to pacman/AUR helper of your choice)
+function fyayunins() {
+    yay -Qq | fzf -q "$1" -m --preview 'yay -Qi {1}' | xargs -ro yay -Rns
+}
+
+
+# Install one or more versions of specified language
+# e.g. `fasdfi rust` # => fzf multimode, tab to mark, enter to install
+# if no plugin is supplied (e.g. `fasdfi<CR>`), fzf will list them for you
+# Mnemonic [V]ersion [M]anager [I]nstall
+fasdfi() {
+  local lang=${1}
+
+  if [[ ! $lang ]]; then
+    lang=$(asdf plugin-list | fzf)
+  fi
+
+  if [[ $lang ]]; then
+    local versions=$(asdf list-all $lang | fzf --tac --no-sort --multi)
+    if [[ $versions ]]; then
+      for version in $(echo $versions);
+      do; asdf install $lang $version; done;
+    fi
+  fi
+}
+
+# Remove one or more versions of specified language
+# e.g. `fasdfi rust` # => fzf multimode, tab to mark, enter to remove
+# if no plugin is supplied (e.g. `fasdfi<CR>`), fzf will list them for you
+# Mnemonic [V]ersion [M]anager [C]lean
+fasdfui() {
+  local lang=${1}
+
+  if [[ ! $lang ]]; then
+    lang=$(asdf plugin-list | fzf)
+  fi
+
+  if [[ $lang ]]; then
+    local versions=$(asdf list $lang | fzf -m)
+    if [[ $versions ]]; then
+      for version in $(echo $versions);
+      do; asdf uninstall $lang $version; done;
+    fi
+  fi
+}
+
+
+sshf () {
+  hosts=$(cat ~/.ssh/config ~/.ssh/config.d/* /etc/ssh/ssh_config 2> /dev/null | grep -i -e '^host ' | awk '{print $2}' | grep -v "*" | grep -v "*$" | sort -u )
+
+  selected_host=$(echo "$hosts" | fzf --height=50% --reverse --prompt="SSH into: ")
+  if [ -n "$selected_host" ]
+  then
+    ssh "$selected_host"
+  fi
+}
