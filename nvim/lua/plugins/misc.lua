@@ -4,15 +4,14 @@ return {
   'tpope/vim-sleuth',
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {}, event = 'VeryLazy' },
-  -- {
-  --   -- Theme inspired by Atom
-  --   'navarasu/onedark.nvim',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'onedark'
-  --   end,
-  -- },
+  {
+    'folke/which-key.nvim',
+    opts = {},
+    event = 'VeryLazy',
+    config = function()
+      require 'config.which_key'
+    end,
+  },
 
   { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 

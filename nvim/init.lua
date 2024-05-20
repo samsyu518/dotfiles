@@ -25,11 +25,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require 'autocmd'
-require 'options'
-
-require('lazy').setup {
-  spec = { { import = 'plugins' } },
+require('lazy').setup({ import = 'plugins' }, {
   checker = {
     -- automatically check for plugin updates
     enabled = false,
@@ -38,11 +34,9 @@ require('lazy').setup {
     frequency = 3600, -- check for updates every hour
     check_pinned = false, -- check for pinned packages that can't be updated
   },
-}
+  change_detection = { notify = false },
+})
 
-vim.cmd.colorscheme 'catppuccin'
--- vim.cmd.colorscheme "onedark"
-require 'remap'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
