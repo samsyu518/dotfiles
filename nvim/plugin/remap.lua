@@ -67,10 +67,13 @@ end, { expr = true })
 
 -- cmd list
 set('n', '<leader>cS', '<cmd>.lua <cr>', { desc = 'run the current line lua' })
-set('n', '<leader>cs', '<cmd>source %<cr>', { desc = 'source current file' })
+set('n', '<leader>cs', '<cmd>w<cr><cmd>source %<cr>', { desc = 'source current file' })
 set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
 set('n', '<leader>cl', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 set('n', '<leader>ci', '<cmd>InspectTree<cr>', { desc = 'InspectTree' })
+set('n', '<leader>cc', '<cmd>checkhealth<cr>', { desc = 'checkhealth' })
+set('n', '<leader>cn', '<cmd>vnew<cr>', { desc = 'vnew' })
+set('n', '<leader>cN', '<cmd>new<cr>', { desc = 'new' })
 
 -- Quit all
 set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
@@ -95,5 +98,6 @@ set('n', 'gp', vim.cmd.bp, { desc = 'buffer previous' })
 set('n', '<M-n>', vim.cmd.bn, { desc = 'buffer next' })
 set('n', '<M-p>', vim.cmd.bp, { desc = 'buffer previous' })
 set('n', '<leader>bd', vim.cmd.bd, { desc = 'buffer delete' })
+set('n', '<M-w>', vim.cmd.bd, { desc = 'buffer delete' })
 set('n', '<leader>bn', vim.cmd.enew, { desc = 'buffer new' })
 set('n', '<leader>bka', '<cmd>%bd|e<cr>', { desc = 'buffer kill all' })

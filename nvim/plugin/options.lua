@@ -1,30 +1,32 @@
 -- [[ Setting options ]]
--- See `:help vim.opt`
+-- See `:help opt.
+local opt = vim.opt
+opt.inccommand = 'split'
 
-vim.opt.guicursor = ''
+opt.guicursor = ''
 
 -- Make line numbers default
-vim.opt.nu = true
-vim.opt.relativenumber = true
+opt.nu = true
+opt.relativenumber = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
-vim.opt.smartindent = true
+opt.smartindent = true
 
 -- Enable mouse mode
-vim.opt.mouse = 'a'
+opt.mouse = 'a'
 
-vim.opt.swapfile = false
-vim.opt.backup = false
+opt.swapfile = false
+opt.backup = false
 -- Save undo history
-vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
-vim.opt.undofile = true
-vim.opt.undolevels = 10000
-vim.opt.wildmode = 'longest:full,full' -- Command-line completion mode
-vim.opt.fillchars = {
+opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+opt.undofile = true
+opt.undolevels = 10000
+opt.wildmode = 'longest:full,full' -- Command-line completion mode
+opt.fillchars = {
   foldopen = '',
   foldclose = '',
   -- fold = "⸱",
@@ -53,35 +55,41 @@ end
 vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.opt.breakindent = true
+opt.breakindent = true
 
 -- Set highlight on search
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+opt.hlsearch = true
+opt.incsearch = true
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+opt.ignorecase = true
+opt.smartcase = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+opt.updatetime = 250
+opt.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 -- setup in lsp.lua
--- vim.opt.completeopt = 'menu,menuone,noinsert'
+-- opt.completeopt = 'menu,menuone,noinsert'
 
 -- NOTE: You should make sure your terminal supports this
-vim.opt.termguicolors = true
+opt.termguicolors = true
 
-vim.opt.scrolloff = 8
-vim.opt.colorcolumn = '80'
+opt.scrolloff = 8
+opt.colorcolumn = '80'
+-- Don't have `o` add a comment
+opt.formatoptions:remove 'o'
+
+-- for vnew new
+opt.splitbelow = true
+opt.splitright = true
 
 vim.g.python3_host_prog = '~/.venv/bin/python'
--- vim.opt.foldmethod = 'expr'
--- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- opt.foldmethod = 'expr'
+-- opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.cmd.colorscheme 'catppuccin'
 -- vim.cmd.colorscheme 'onedark'
