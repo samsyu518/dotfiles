@@ -107,10 +107,9 @@ export LANGUAGE=English
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias python=python3
-alias vi=~/neovim/build/bin/nvim
+alias vi=~/.local/nvim/bin/nvim
 alias sshlemon="ssh -R 1234:127.0.0.1:1234"
 alias cvenv="python -m venv .venv"
-export VIMRUNTIME="~/neovim/runtime"
 export VISUAL="vim"
 
 # Zsh poetry
