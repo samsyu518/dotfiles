@@ -34,47 +34,22 @@ vim.opt.fillchars = {
   eob = ' ',
 }
 
--- The data to be written here can be quite long.
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
--- vim.g.clipboard = {
---   name = 'OSC 52',
---   copy = {
---     ['+'] = require('vim.ui.clipboard.osc52').copy 'c',
---     ['*'] = require('vim.ui.clipboard.osc52').copy 'c',
---   },
---   paste = {
---     ['+'] = require('vim.ui.clipboard.osc52').paste '+',
---     ['*'] = require('vim.ui.clipboard.osc52').paste '*',
---   },
--- }
+if os.getenv 'SSH_CLIENT' and not os.getenv 'TMUX' then
+  vim.g.clipboard = {
+    name = 'LemonadeClipboard',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+      ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+    },
 
--- local function copy(lines, _)
---   require('osc52').copy(table.concat(lines, '\n'))
--- end
---
--- if os.getenv 'SSH_CLIENT' then
---   vim.g.clipboard = {
---     name = 'LemonadeClipboard',
---     copy = { ['*'] = copy, ['+'] = copy },
---     paste = {
---       ['+'] = { 'lemonade', 'paste' },
---       ['*'] = { 'lemonade', 'paste' },
---     },
---     cache_enabled = true,
---   }
--- elseif vim.loop.os_uname().release:match 'WSL' then
---   vim.g.clipboard = {
---     name = 'WslClipboard',
---     copy = { ['*'] = copy, ['+'] = copy },
---     paste = {
---       ['+'] = { 'nvim_paste' },
---       ['*'] = { 'nvim_paste' },
---     },
---     cache_enabled = true,
---   }
--- end
+    paste = {
+      ['+'] = { 'lemonade', 'paste' },
+      ['*'] = { 'lemonade', 'paste' },
+    },
+    cache_enabled = true,
+  }
+end
+
 vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
