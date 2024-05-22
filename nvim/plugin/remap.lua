@@ -1,4 +1,19 @@
 -- [[ Basic Keymaps ]]
+--*map-table*
+--          Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang | ~
+-- Command        +------+-----+-----+-----+-----+-----+------+------+ ~
+-- [nore]map      | yes  |  -  |  -  | yes | yes | yes |  -   |  -   |
+-- n[nore]map     | yes  |  -  |  -  |  -  |  -  |  -  |  -   |  -   |
+-- [nore]map!     |  -   | yes | yes |  -  |  -  |  -  |  -   |  -   |
+-- i[nore]map     |  -   | yes |  -  |  -  |  -  |  -  |  -   |  -   |
+-- c[nore]map     |  -   |  -  | yes |  -  |  -  |  -  |  -   |  -   |
+-- v[nore]map     |  -   |  -  |  -  | yes | yes |  -  |  -   |  -   |
+-- x[nore]map     |  -   |  -  |  -  | yes |  -  |  -  |  -   |  -   |
+-- s[nore]map     |  -   |  -  |  -  |  -  | yes |  -  |  -   |  -   |
+-- o[nore]map     |  -   |  -  |  -  |  -  |  -  | yes |  -   |  -   |
+-- t[nore]map     |  -   |  -  |  -  |  -  |  -  |  -  | yes  |  -   |
+-- l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
+--
 local set = vim.keymap.set
 -- Basic movement keybinds, these make navigating splits easy for me
 set('n', '<M-j>', '<c-w><c-j>')
@@ -25,7 +40,12 @@ set('n', 'N', 'Nzzzv')
  to a VOID register. Meaning I still have what I originally had
  when I pasted. I don't loose the previous thing I YANKED! ]]
 set('x', 'p', [["_dP]])
+-- yank to black hole
 set({ 'n', 'v' }, 'c', [["_c]])
+set({ 'n', 'v' }, 'd', [["_d]])
+-- normal yank
+set({ 'n', 'v' }, 'C', 'c')
+set({ 'n', 'v' }, 'D', 'd')
 
 -- quick file replace
 set('n', '<leader>fs', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -74,6 +94,7 @@ set('n', '<leader>ci', '<cmd>InspectTree<cr>', { desc = 'InspectTree' })
 set('n', '<leader>cc', '<cmd>checkhealth<cr>', { desc = 'checkhealth' })
 set('n', '<leader>cn', '<cmd>vnew<cr>', { desc = 'vnew' })
 set('n', '<leader>cN', '<cmd>new<cr>', { desc = 'new' })
+set('n', '<leader>cf', ':set filetype=', { desc = 'quick set filetype' })
 
 -- Quit all
 set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
@@ -83,8 +104,8 @@ set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic mes
 set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 set('n', '<M-[>', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 set('n', '<M-]>', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-set('n', '<leader>le', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+set('n', 'gL', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- These mappings control the size of splits (height/width)
 set('n', '<M-,>', '<c-w>5<')
