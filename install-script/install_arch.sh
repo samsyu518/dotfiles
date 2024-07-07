@@ -11,8 +11,8 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # poetry
 curl -sSL https://install.python-poetry.org | python3 -
-
 export PATH="/home/$USER/.local/bin:$PATH"
+poetry self add poetry-plugin-export
 
 # sync tools
 yay -S --noconfirm restic rclone rsync
