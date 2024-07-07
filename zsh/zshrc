@@ -25,7 +25,7 @@ ZSH_THEME="dallas"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode background-alpha      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -107,7 +107,8 @@ export LANGUAGE=English
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias python=python3
-alias vi=~/.local/nvim/bin/nvim
+#alias vi=~/.local/nvim/bin/nvim
+alias vi=nvim
 alias sshlemon="ssh -R 1234:127.0.0.1:1234"
 alias cvenv="python -m venv .venv"
 export VISUAL="vim"
