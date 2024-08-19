@@ -2,7 +2,7 @@
 require('which-key').add {
   { '<leader>b', group = '[B]uffer' },
   { '<leader>c', group = '[C]md' },
-  { '<leader>d', group = '[D]ebug' },
+  { '<leader>d', group = '[D]ebug/DB' },
   { '<leader>g', group = '[G]it' },
   { '<leader>l', group = '[L]LSP' },
   { '<leader>lw', group = 'LSP [W]orkspace' },

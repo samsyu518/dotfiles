@@ -88,7 +88,7 @@ end, { expr = true })
 -- cmd list
 set('n', '<leader>cS', '<cmd>.lua <cr>', { desc = 'run the current line lua' })
 set('n', '<leader>cs', '<cmd>w<cr><cmd>source %<cr>', { desc = 'source current file' })
-set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
+set('n', '<leader>cM', '<cmd>Mason<cr>', { desc = 'Mason' })
 set('n', '<leader>cL', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 set('n', '<leader>cli', '<cmd>LspInfo<cr>', { desc = 'LspInfo' })
 set('n', '<leader>cll', '<cmd>LspLog<cr>', { desc = 'LspLog' })
