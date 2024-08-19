@@ -9,6 +9,5 @@ private/*
 .spacemacs.env
 
 .spacemacs.d/emacs-custom-settings.el
-nvim/lazy-lock.json
 nvim/.luarc.json
 tmux-powerline/config.sh

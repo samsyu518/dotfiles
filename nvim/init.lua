@@ -2,6 +2,7 @@
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 -- fix cwd to open file path
 if vim.fn.isdirectory(vim.v.argv[3]) == 1 then
@@ -36,7 +37,6 @@ require('lazy').setup({ import = 'plugins' }, {
   },
   change_detection = { notify = false },
 })
-
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

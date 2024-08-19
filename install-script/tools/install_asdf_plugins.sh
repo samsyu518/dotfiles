@@ -5,6 +5,7 @@ asdf plugin add elixir
 asdf plugin add python
 asdf plugin add nodejs
 asdf plugin add golang
+asdf plugin add chezscheme
 
 distro_info=$(cat /etc/*-release 2>/dev/null)
 
@@ -40,6 +41,7 @@ asdf install erlang 24.3.4.16
 asdf install erlang 26.2.3
 asdf install nodejs 21.7.1
 asdf install golang 1.22.1
+asdf install chezscheme latest
 
 if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global python system
@@ -56,3 +58,4 @@ fi
 asdf install elixir ref:v1.16.2
 asdf install elixir ref:v1.15.7
 asdf global elixir ref:v1.16.2
+asdf global chezscheme latest
