@@ -11,7 +11,7 @@ return {
     end,
 
     -- Optional cmp-conjure integration
-    dependencies = { 'PaterJason/cmp-conjure' },
+    dependencies = { 'PaterJason/cmp-conjure', 'wlangstroth/vim-racket' },
   },
   {
     'PaterJason/cmp-conjure',

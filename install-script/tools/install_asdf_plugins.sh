@@ -5,7 +5,7 @@ asdf plugin add elixir
 asdf plugin add python
 asdf plugin add nodejs
 asdf plugin add golang
-asdf plugin add chezscheme
+asdf plugin-add racket https://github.com/vic/asdf-racket.git
 
 distro_info=$(cat /etc/*-release 2>/dev/null)
 
@@ -35,13 +35,13 @@ fi
 # asdf list all python
 asdf install python 3.8.19
 asdf install python 3.10.14
-asdf install python 3.11.8
-asdf install python 3.12.2
-asdf install erlang 24.3.4.16
-asdf install erlang 26.2.3
-asdf install nodejs 21.7.1
-asdf install golang 1.22.1
-asdf install chezscheme latest
+asdf install python 3.11.9
+asdf install python 3.12.5
+asdf install erlang 26.2.5.2
+asdf install erlang 27.0.1
+asdf install nodejs latest
+asdf install golang latest
+asdf install racket latest
 
 if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global python system
@@ -49,13 +49,13 @@ if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global nodejs system
     asdf global golang system
 else
-    asdf global python 3.11.8
-    asdf global erlang 26.2.3
-    asdf global nodejs 21.6.0
-    asdf global golang 1.21.6
+    asdf global python 3.11.9
+    asdf global erlang 26.2.5.2
+    asdf global nodejs latest
+    asdf global golang latest
 fi
 
-asdf install elixir ref:v1.16.2
-asdf install elixir ref:v1.15.7
-asdf global elixir ref:v1.16.2
-asdf global chezscheme latest
+asdf install elixir ref:v1.16.3
+asdf install elixir ref:v1.17.2
+asdf global elixir ref:v1.16.3
+asdf global racket latest

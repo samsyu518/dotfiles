@@ -14,6 +14,7 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 export PATH="~/development/flutter/bin:$PATH"
+export PATH="/Applications/Racket v8.13/bin:$PATH"
 export LOCATE_PATH="/var/db/locate.database"
 
 
