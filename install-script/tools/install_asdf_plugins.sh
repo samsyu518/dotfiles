@@ -27,17 +27,23 @@ elif [[ $distro_info == *"Ubuntu"* ]]; then
 	libncurses5-dev libgl1-mesa-dev libglu1-mesa-dev \
 	libpng-dev libssh-dev unixodbc-dev xsltproc fop \
 	libxml2-utils libncurses-dev openjdk-11-jdk
+elif [[ $distro_info == *"Fedora"*]]; then
+    echo "Running commands for Fedora"
+    sudo dnf install ncurses-devel autoconf ncurses-devel wxBase-devel wxGTK-devel openssl-devel java-21-openjdk-devel \
+libiodbc unixODBC-devel erlang-odbc libxslt fop
+
 else
     echo "Unsupported distribution: Unable to determine distribution information."
 fi
 
 # if need check version
 # asdf list all python
-asdf install python 3.8.19
-asdf install python 3.10.14
-asdf install python 3.11.9
-asdf install python 3.12.5
-asdf install erlang 26.2.5.2
+# use uv vevn
+# asdf install python 3.8.19
+# asdf install python 3.10.14
+# asdf install python 3.11.9
+# asdf install python 3.12.5
+asdf install erlang 26.2.5.3
 asdf install erlang 27.0.1
 asdf install nodejs latest
 asdf install golang latest
@@ -49,8 +55,8 @@ if [[ $distro_info == *"Arch Linux"* ]]; then
     asdf global nodejs system
     asdf global golang system
 else
-    asdf global python 3.11.9
-    asdf global erlang 26.2.5.2
+    asdf global python system
+    asdf global erlang 26.2.5.3
     asdf global nodejs latest
     asdf global golang latest
 fi
