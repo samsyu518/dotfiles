@@ -30,9 +30,9 @@ mkdir -p ~/.local/bin/
 arch=$(uname -m)
 
 if [ "$arch" == "x86_64" ]; then
-  DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64"
+  DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.29.3/docker-compose-linux-x86_64"
 elif [ "$arch" == "aarch64" ]; then
-  DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-aarch64"
+  DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.29.3/docker-compose-linux-aarch64"
 else
     echo "Unsupported architecture: $arch"
     exit 1

@@ -14,6 +14,9 @@ curl -sSL https://install.python-poetry.org | python3 -
 export PATH="/home/$USER/.local/bin:$PATH"
 poetry self add poetry-plugin-export
 
+# uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # sync tools
 yay -S --noconfirm restic rclone rsync
 
