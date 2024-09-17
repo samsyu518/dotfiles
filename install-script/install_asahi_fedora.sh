@@ -2,7 +2,7 @@
 
 sudo dnf upgrade -y
 #basic build and develop tools
-sudo dnf install -y git-core fastfetch neovim tmux zsh fzf ripgrep jq ncdu redis inotify-tools vim \
+sudo dnf install -y git-core fastfetch neovim tmux zsh fzf ripgrep jq ncdu redis inotify-tools vim yarnpkg
 
 #build group
 sudo dnf group install -y "C Development Tools and Libraries" "Development Tools"
