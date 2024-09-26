@@ -192,3 +192,5 @@ add-zsh-hook chpwd python_venv
 
 python_venv
 #macchina
+
+. "$HOME/.cargo/env"

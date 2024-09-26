@@ -31,7 +31,7 @@ rclone genautocomplete zsh ~/.oh-my-zsh/custom/plugins/rclone/_rclone
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 
 # develop tools
-yay -S --noconfirm neofetch emacs macchina-bin lazygit \
+yay -S --noconfirm neofetch emacs fastfetch lazygit-git \
     docker docker-compose mysql-clients erlang elixir aspell-en aspell xsel \
     ripgrep the_silver_searcher fd locate ttf-fira-code \
     clj-kondo-bin rlwrap clojure leiningen jdk-openjdk \
