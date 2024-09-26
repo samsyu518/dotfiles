@@ -2,11 +2,20 @@ return {
 
   -- Git related plugins
   {
-    'tpope/vim-fugitive',
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
 
-    config = function() end,
+      -- Only one of these is needed.
+      'nvim-telescope/telescope.nvim', -- optional
+      'ibhagwan/fzf-lua', -- optional
+      'echasnovski/mini.pick', -- optional
+    },
+    config = function(opts)
+      require 'config.git.neogit_config'
+    end,
   },
-  'tpope/vim-rhubarb',
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
