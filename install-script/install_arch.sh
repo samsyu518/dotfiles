@@ -31,13 +31,15 @@ rclone genautocomplete zsh ~/.oh-my-zsh/custom/plugins/rclone/_rclone
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 
 # develop tools
-yay -S --noconfirm neofetch emacs fastfetch lazygit-git \
+yay -S --noconfirm emacs fastfetch \
     docker docker-compose mysql-clients erlang elixir aspell-en aspell xsel \
     ripgrep the_silver_searcher fd locate ttf-fira-code \
-    clj-kondo-bin rlwrap clojure leiningen jdk-openjdk \
+    rlwrap clojure leiningen jdk-openjdk \
     yarn nodejs npm htop btop glances jq less net-tools lsof ncdu rustup go redis \
-    google-cloud-cli inotify-tools bind fzf
+    inotify-tools bind fzf
  
+yay -S --noconfirm lazygit-git google-cloud-cli clj-kondo-bin 
+
 # font install
 yay -S --noconfirm adobe-source-han-sans-otc-fonts adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts \
     wqy-microhei wqy-microhei-lite wqy-bitmapfont wqy-zenhei \
