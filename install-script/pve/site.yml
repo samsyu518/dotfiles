@@ -1,0 +1,28 @@
+---
+- name: Init debian wol
+  hosts: pve
+  become: true
+  vars:
+    apt_cache_valid_time: 3600
+    network_interface: "enp6s0"
+
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: "{{ apt_cache_valid_time }}"
+    - name: Install ethtool
+      ansible.builtin.apt:
+        name: ethtool
+        state: present
+
+    - name: Create udev rule for Wake-on-LAN
+      ansible.builtin.copy:
+        dest: "/etc/udev/rules.d/81-wol-{{ network_interface }}.rules"
+        content: 'ACTION=="add", SUBSYSTEM=="net", KERNEL=="{{ network_interface }}", RUN+="/usr/sbin/ethtool -s {{ network_interface }} wol g"'
+        owner: root
+        group: root
+        mode: "0644"
+
+- name: Install proxmox
+  import_playbook: ./install_proxmox_playbook.yml
