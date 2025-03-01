@@ -36,7 +36,7 @@ yay -S --noconfirm emacs fastfetch \
     ripgrep the_silver_searcher fd locate ttf-fira-code \
     rlwrap clojure leiningen jdk-openjdk \
     yarn nodejs npm htop btop glances jq less net-tools lsof ncdu rustup go redis \
-    inotify-tools bind fzf
+    google-cloud-cli inotify-tools bind fzf inetutils
  
 yay -S --noconfirm lazygit-git google-cloud-cli clj-kondo-bin 
 

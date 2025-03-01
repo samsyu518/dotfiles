@@ -136,7 +136,7 @@ if uname -a | grep -q 'Darwin'; then
 else # linux
   if uname -r | grep -q 'microsoft'; then
     alias poweroff="wsl.exe --shutdown Arch"
-    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+    export DISPLAY=$(ip route | grep default | awk '{print $3}'):0.0
     export LIBGL_ALWAYS_INDIRECT=1
     # Start Docker daemon automatically when logging in if not running.
     RUNNING=`ps aux | grep dockerd | grep -v grep`

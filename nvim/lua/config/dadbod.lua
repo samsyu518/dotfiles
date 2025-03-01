@@ -13,3 +13,10 @@ vim.g.Db_ui_buffer_name_generator = function(opts)
   end
   return opts.table .. '-' .. vim.fn.strftime '%Y-%m-%d-%H-%M-%S' .. '.sql'
 end
+
+vim.g.db_ui_table_helpers = {
+  mysql = {
+    Count = 'select count(*) from "{table}"',
+    List = 'select * from "{table}" order by id asc',
+  },
+}
