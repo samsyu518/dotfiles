@@ -2,8 +2,6 @@
 
 # Initialize keyring
 # https://wiki.archlinux.org/title/Pacman/Package_signing#Troubleshooting if fail
-gpgconf --kill gpg-agent
-rm -rf /etc/pacman.d/gnupg/
 pacman-key --init
 pacman-key --populate
 pacman -Sy --noconfirm archlinux-keyring
@@ -32,7 +30,15 @@ read username
 username="${username:=arch}"
 echo $username
 useradd -m -G wheel -s /bin/bash $username
+sudo tee -a /etc/wsl.conf > /dev/null <<EOF
+[user]
+default=$username
+
+[interop]
+enabled=true
+EOF
 echo "passwd here:"
 passwd $username
 
 su -c './install_arch.sh' $username
+
