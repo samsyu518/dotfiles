@@ -35,7 +35,7 @@ yay -S --noconfirm emacs fastfetch \
     docker docker-compose mysql-clients erlang elixir aspell-en aspell xsel \
     ripgrep the_silver_searcher fd locate ttf-fira-code \
     rlwrap clojure leiningen jdk-openjdk \
-    yarn nodejs npm htop btop glances jq less net-tools lsof ncdu rustup go redis \
+    yarn nodejs npm htop btop glances jq less net-tools lsof ncdu go redis \
     google-cloud-cli inotify-tools bind fzf inetutils
  
 yay -S --noconfirm lazygit-git google-cloud-cli clj-kondo-bin 
@@ -50,7 +50,6 @@ yay -S --noconfirm adobe-source-han-sans-otc-fonts adobe-source-han-sans-otc-fon
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER
 
-rustup default stable
 
 bash ./tools/install_asdf.sh
 
@@ -62,4 +61,5 @@ sudo chsh -s $(which zsh) $USER
 
 bash ./tools/install_asdf_plugins.sh
 
+bash ./tools/install_rust.sh
 export PATH="$HOME/.cargo/bin/:$PATH"

@@ -42,7 +42,7 @@ bash ./tools/install_lazygit.sh
 bash ./tools/install_asdf.sh
 bash ./tools/install_debian_docker.sh
 bash ./tools/install_debian_neovim.sh
-bash ./tools/install_debian_rust.sh
+bash ./tools/install_rust.sh
 
 # dotfile install
 (cd ../ && ./install)
