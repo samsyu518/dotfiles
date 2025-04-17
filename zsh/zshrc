@@ -110,6 +110,13 @@ export LANGUAGE=English
 alias python=python3
 #alias vi=~/.local/nvim/bin/nvim
 alias vi=nvim
+alias v=vim
+
+vv() {
+  select config in lazyvim nvchad astronvim
+  do NVIM_APPNAME=nvim_$config nvim $@; break; done
+}
+
 alias sshlemon="ssh -R 1234:127.0.0.1:1234"
 alias cvenv="python -m venv .venv"
 export VISUAL="vim"
