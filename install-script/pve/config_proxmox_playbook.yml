@@ -1,0 +1,51 @@
+---
+- name: "Configurate proxmox"
+  hosts: pve
+  become: true
+  vars:
+    apt_cache_valid_time: 3600
+    zfs_arc_max_gb: 4 # Set your desired max ARC size in GB
+  tasks:
+    - name: Ensure contrib is present in all APT sources
+      ansible.builtin.template:
+        src: templates/sources.list
+        dest: /etc/apt/sources.list
+        mode: "0644"
+      register: sources_updated
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: "{{ apt_cache_valid_time }}"
+
+    - name: Install packages
+      ansible.builtin.apt:
+        pkg:
+          - virtiofsd
+          - libgl1
+          - libegl1
+          - nvtop
+
+    - name: Calculate ARC max and min values
+      ansible.builtin.set_fact:
+        zfs_arc_max: "{{ zfs_arc_max_gb * 1024 * 1024 * 1024 }}"
+        zfs_arc_min: "{{ (zfs_arc_max_gb / 2) * 1024 * 1024 * 1024 | int }}"
+
+    - name: Ensure /etc/modprobe.d/zfs.conf exists
+      ansible.builtin.file:
+        path: /etc/modprobe.d/zfs.conf
+        state: touch
+        mode: "0644"
+
+    - name: Configure ZFS ARC max and min
+      ansible.builtin.blockinfile:
+        path: /etc/modprobe.d/zfs.conf
+        block: |
+          options zfs zfs_arc_max={{ zfs_arc_max }}
+          options zfs zfs_arc_min={{ zfs_arc_min }}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+
+    - name: Update initramfs
+      ansible.builtin.command:
+        cmd: update-initramfs -u -k all
+      changed_when: true
