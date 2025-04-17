@@ -11,3 +11,4 @@ private/*
 .spacemacs.d/emacs-custom-settings.el
 nvim/.luarc.json
 tmux-powerline/config.sh
+install-script/pve/.ansible/roles
