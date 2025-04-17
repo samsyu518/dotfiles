@@ -22,9 +22,9 @@ require("oil").setup({
     },
   },
   win_options = {
-    winbar = "%!v:lua.vim.loop.cwd()",
+    winbar = "%!v:lua.vim.uv.cwd()",
   },
 })
 vim.keymap.set("n", "-", '<CMD>lua require("oil").toggle_float()<CR>', { desc = "Open parent directory" })
-vim.keymap.set("n", "_", '<CMD>lua require("oil").toggle_float(vim.loop.cwd())<CR>', { desc = "Open cwd directory" })
+vim.keymap.set("n", "_", '<CMD>lua require("oil").toggle_float(vim.uv.cwd())<CR>', { desc = "Open cwd directory" })
 vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

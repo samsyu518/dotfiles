@@ -19,7 +19,7 @@ return {
       {
         "<leader>tT",
         function()
-          require("neotest").run.run({ vim.loop.cwd(), env = { TZ = "UTC" } })
+          require("neotest").run.run({ vim.uv.cwd(), env = { TZ = "UTC" } })
         end,
         desc = "Run All Test Files",
       },
