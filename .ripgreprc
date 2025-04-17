@@ -10,6 +10,7 @@
 # Using glob patterns to include/exclude files or folders
 --glob=!.git
 --glob=!dotbot
+--glob=!.venv
 
 # Because who cares about case!?
 --smart-case
