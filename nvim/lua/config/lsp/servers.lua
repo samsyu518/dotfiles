@@ -10,7 +10,7 @@ return {
   jsonls = {
     settings = {
       json = {
-        schemas = require('schemastore').json.schemas(),
+        schemas = require("schemastore").json.schemas(),
         validate = { enable = true },
       },
     },
@@ -21,9 +21,9 @@ return {
       yaml = {
         schemaStore = {
           enable = false,
-          url = '',
+          url = "",
         },
-        schemas = require('schemastore').yaml.schemas(),
+        schemas = require("schemastore").yaml.schemas(),
       },
     },
   },
@@ -36,7 +36,7 @@ return {
   --   cmd = { vim.fn.expand '$HOME/.local/share/nvim/mason/bin/nextls', '--stdio' },
   -- },
   elixirls = {
-    cmd = { vim.fn.expand '$HOME/.local/share/nvim/mason/bin/elixir-ls' },
+    cmd = { vim.fn.expand("$HOME/.local/share/nvim/mason/bin/elixir-ls") },
   },
 
   pyright = {},

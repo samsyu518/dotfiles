@@ -1,87 +1,87 @@
 return {
   {
-    'nvim-neotest/neotest',
+    "nvim-neotest/neotest",
     -- event = 'VeryLazy',
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'antoinemadec/FixCursorHold.nvim',
-      'nvim-neotest/neotest-python',
-      'jfpedroza/neotest-elixir',
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-python",
+      "jfpedroza/neotest-elixir",
     },
     keys = {
       {
-        '<leader>tt',
+        "<leader>tt",
         function()
-          require('neotest').run.run { vim.fn.expand '%', env = { TZ = 'UTC' } }
+          require("neotest").run.run({ vim.fn.expand("%"), env = { TZ = "UTC" } })
         end,
-        desc = 'Run File',
+        desc = "Run File",
       },
       {
-        '<leader>tT',
+        "<leader>tT",
         function()
-          require('neotest').run.run { vim.loop.cwd(), env = { TZ = 'UTC' } }
+          require("neotest").run.run({ vim.loop.cwd(), env = { TZ = "UTC" } })
         end,
-        desc = 'Run All Test Files',
+        desc = "Run All Test Files",
       },
       {
-        '<leader>tr',
+        "<leader>tr",
         function()
-          require('neotest').run.run()
+          require("neotest").run.run()
         end,
-        desc = 'Run Nearest',
+        desc = "Run Nearest",
       },
       {
-        '<leader>ts',
+        "<leader>ts",
         function()
-          require('neotest').summary.toggle()
+          require("neotest").summary.toggle()
         end,
-        desc = 'Toggle Summary',
+        desc = "Toggle Summary",
       },
       {
-        '<leader>to',
+        "<leader>to",
         function()
-          require('neotest').output.open { enter = true, auto_close = true }
+          require("neotest").output.open({ enter = true, auto_close = true })
         end,
-        desc = 'Show Output',
+        desc = "Show Output",
       },
       {
-        '<leader>tO',
+        "<leader>tO",
         function()
-          require('neotest').output_panel.toggle()
+          require("neotest").output_panel.toggle()
         end,
-        desc = 'Toggle Output Panel',
+        desc = "Toggle Output Panel",
       },
       {
-        '<leader>tS',
+        "<leader>tS",
         function()
-          require('neotest').run.stop()
+          require("neotest").run.stop()
         end,
-        desc = 'Stop',
+        desc = "Stop",
       },
     },
     config = function()
-      require('neotest').setup {
+      require("neotest").setup({
         adapters = {
-          require 'neotest-python' {
+          require("neotest-python")({
             -- Extra arguments for nvim-dap configuration
             -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
             dap = { justMyCode = false },
             -- Command line arguments for runner
             -- Can also be a function to return dynamic values
-            args = { '--log-level', 'DEBUG', '-vv' },
+            args = { "--log-level", "DEBUG", "-vv" },
             -- Runner to use. Will use pytest if available by default.
             -- Can be a function to return dynamic value.
-            runner = 'pytest',
+            runner = "pytest",
             -- Custom python path for the runner.
             -- Can be a string or a list of strings.
             -- Can also be a function to return dynamic value.
             -- If not provided, the path will be inferred by checking for
             -- virtual envs in the local directory and for Pipenev/Poetry configs
-            python = '.venv/bin/python',
-          },
-          require 'neotest-elixir',
+            python = ".venv/bin/python",
+          }),
+          require("neotest-elixir"),
         },
-      }
+      })
     end,
   },
 }
