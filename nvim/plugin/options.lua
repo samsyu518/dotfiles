@@ -36,22 +36,6 @@ opt.fillchars = {
   eob = " ",
 }
 
-if os.getenv("SSH_CLIENT") and not os.getenv("TMUX") then
-  vim.g.clipboard = {
-    name = "LemonadeClipboard",
-    copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-
-    paste = {
-      ["+"] = { "lemonade", "paste" },
-      ["*"] = { "lemonade", "paste" },
-    },
-    cache_enabled = true,
-  }
-end
-
 vim.o.clipboard = "unnamedplus"
 
 -- Enable break indent
