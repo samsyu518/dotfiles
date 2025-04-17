@@ -115,16 +115,13 @@ alias v=vim
 vv() {
   select config in lazyvim nvchad astronvim default; do
     case $config in
-      lazyvim|nvchad|astronvim)
-        NVIM_APPNAME="nvim_$config" nvim "$@"
-        break
-        ;;
       default)
         nvim "$@"
         break
         ;;
       *)
-        echo "Invalid choice. Try again."
+        NVIM_APPNAME="nvim_$config" nvim "$@"
+        break
         ;;
     esac
   done
