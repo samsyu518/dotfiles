@@ -35,7 +35,7 @@ yay -S --noconfirm emacs fastfetch \
   docker docker-compose mysql-clients erlang elixir aspell-en aspell xsel \
   ripgrep the_silver_searcher fd locate ttf-fira-code \
   rlwrap clojure leiningen jdk-openjdk \
-  yarn nodejs npm htop btop glances jq less net-tools lsof ncdu go valkey \
+  yarn nodejs npm htop btop glances jq less net-tools lsof ncdu go valkey luarocks \
   google-cloud-cli inotify-tools bind fzf stylua inetutils
 
 yay -S --noconfirm lazygit-git google-cloud-cli clj-kondo-bin
