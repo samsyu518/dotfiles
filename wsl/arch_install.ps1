@@ -1,32 +1,36 @@
-# Define the URLs and local file paths
-$wslUrl = "https://gitlab.archlinux.org/api/v4/projects/85684/packages/generic/image/2025.03.04.121374/archlinux-2025.03.04.121374.wsl"
-$sha256FilePath = "$PWD\archlinux-2025.03.04.121374.wsl.SHA256"
-$localWslPath = "$PWD\archlinux-2025.03.04.121374.wsl"
+param(
+    [string]$Version = "2025.04.14.124939"
+)
 
-if (Test-Path -Path $localWslPath) {
-    Write-Output "The .wsl file already exists. Skipping download."
+# Construct paths and URLs dynamically
+$FileName = "archlinux-$Version.wsl"
+$ShaFile = "$FileName.SHA256"
+$WslUrl = "https://gitlab.archlinux.org/api/v4/projects/85684/packages/generic/image/$Version/$FileName"
+$Sha256FilePath = "$PWD\$ShaFile"
+$LocalWslPath = "$PWD\$FileName"
+
+if (Test-Path -Path $LocalWslPath) {
+    Write-Output "The $FileName already exists. Skipping download."
 } else {
-    # Use aria2c to download the .wsl file
-    $aria2Command = "aria2c.exe --max-connection-per-server=16 --split=16 --dir=$PWD --out=archlinux-2025.03.04.121374.wsl $wslUrl"
-    Write-Output "Downloading with aria2c..."
+    $aria2Command = "aria2c.exe --max-connection-per-server=16 --split=16 --dir=$PWD --out=$FileName $WslUrl"
+    Write-Output "Downloading $FileName with aria2c..."
     Invoke-Expression $aria2Command
     Write-Output "Download completed."
 }
 
-# Generate the SHA256 hash of the .wsl file
-$fileHash = (Get-FileHash -Path $localWslPath -Algorithm SHA256).Hash
+# Generate SHA256 hash
+$fileHash = (Get-FileHash -Path $LocalWslPath -Algorithm SHA256).Hash
 
-# Read the checksum from the .SHA256 file and extract only the hash
-$expectedChecksum = (Get-Content -Path $sha256FilePath).Split(" ")[0].Trim()
+# Read expected checksum
+$expectedChecksum = (Get-Content -Path $Sha256FilePath).Split(" ")[0].Trim()
 
-# Compare the checksum
+# Compare checksum
 if ($fileHash -eq $expectedChecksum) {
     Write-Output "The checksum matches. The file is valid."
     $InstanceName = Read-Host -Prompt 'Input Arch Instance name'
-    $installCommand = "wsl --install --from-file=$PWD\archlinux-2025.03.04.121374.wsl --location=$PWD --name=$InstanceName"
+    $installCommand = "wsl --install --from-file=$LocalWslPath --location=$PWD --name=$InstanceName"
     Invoke-Expression $installCommand
-    echo "Arch Instance: $InstanceName"
+    Write-Output "Arch Instance: $InstanceName"
 } else {
     Write-Output "The checksum does not match. The file may be corrupted."
 }
-

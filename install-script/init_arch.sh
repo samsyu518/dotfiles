@@ -17,11 +17,11 @@ ln -sf /bin/nvim /bin/vi
 sed -i 's:#zh_TW.UTF-8 UTF-8:zh_TW.UTF-8 UTF-8:g' /etc/locale.gen
 sed -i 's:#en_US.UTF-8 UTF-8:en_US.UTF-8 UTF-8:g' /etc/locale.gen
 locale-gen
-echo LANGUAGE=en_US.UTF-8 >> /etc/locale.conf
-echo LC_ALL=en_US.UTF-8 >> /etc/locale.conf
+echo LANGUAGE=en_US.UTF-8 >>/etc/locale.conf
+echo LC_ALL=en_US.UTF-8 >>/etc/locale.conf
 
 # whell group sudo without password
-echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
+echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >/etc/sudoers.d/wheel
 
 # init default user
 # Arch.exe config --default-user $username if wsl
@@ -30,7 +30,7 @@ read username
 username="${username:=arch}"
 echo $username
 useradd -m -G wheel -s /bin/bash $username
-sudo tee -a /etc/wsl.conf > /dev/null <<EOF
+sudo tee -a /etc/wsl.conf >/dev/null <<EOF
 [user]
 default=$username
 
@@ -40,5 +40,6 @@ EOF
 echo "passwd here:"
 passwd $username
 
-su -c './install_arch.sh' $username
+# wsl.exe --terminate archlinux
 
+# su -c './install_arch.sh' $username
