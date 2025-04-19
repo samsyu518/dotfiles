@@ -11,6 +11,8 @@
 --glob=!.git
 --glob=!dotbot
 --glob=!.venv
+--glob=!root
+--glob=!.ansible
 
 # Because who cares about case!?
 --smart-case
