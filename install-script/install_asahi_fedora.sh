@@ -2,10 +2,14 @@
 
 sudo dnf upgrade -y
 #basic build and develop tools
-sudo dnf install -y git-core fastfetch neovim tmux zsh fzf ripgrep jq ncdu redis inotify-tools vim yarnpkg
+sudo dnf install -y git-core fastfetch neovim tmux zsh fzf ripgrep jq ncdu valkey inotify-tools vim \
+    yarnpkg htop btop
 
 #build group
-sudo dnf group install -y "C Development Tools and Libraries" "Development Tools"
+#sudo dnf group install -y "C Development Tools and Libraries" "Development Tools"
+sudo dnf group install c-development development-tools
+
+sudo dnf install python3-devel mysql-devel pkgconfig
 
 # ohmyzsh
 bash ./tools/install_ohmyzsh.sh
@@ -23,7 +27,7 @@ sudo dnf install -y restic rclone rsync
 
 # gen zsh complete plugins
 mkdir -p ~/.oh-my-zsh/custom/plugins/poetry/
-poetry completions zsh > ~/.oh-my-zsh/custom/plugins/poetry/_poetry
+poetry completions zsh >~/.oh-my-zsh/custom/plugins/poetry/_poetry
 mkdir -p ~/.oh-my-zsh/custom/plugins/restic/
 restic generate --zsh-completion ~/.oh-my-zsh/custom/plugins/restic/_restic
 mkdir -p ~/.oh-my-zsh/custom/plugins/rclone/
