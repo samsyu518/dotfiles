@@ -24,7 +24,7 @@ sudo dracut --regenerate-all --force
 dnf copr enable -y solopasha/hyprland
 sudo dnf install -y hyprland hyprland-devel      # If you want to build plugins (use hyprpm)
 sudo dnf install -y hyprpanel hyprpaper hyprlock # hyperland tools
-sudo dnf install -y Rofi-wayland blueman
+sudo dnf install -y Rofi-wayland blueman grim
 # ghostty
 sudo dnf copr enable pgdev/ghostty
 sudo dnf install ghostty-git

@@ -134,8 +134,10 @@ input "1452:834:Apple_SPI_Trackpad" {
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    bindsym $mod+s workspace number 100
+    bindsym $mod+0 workspace number 0
+    set $wss s
+    bindsym $mod+s workspace $wss
+    # bindsym $mod+s workspace number 100
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -146,8 +148,8 @@ input "1452:834:Apple_SPI_Trackpad" {
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
-    bindsym $mod+Shift+s move container to workspace number 100
+    bindsym $mod+Shift+0 move container to workspace number 0
+    bindsym $mod+Shift+s move container to workspace $wss
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -223,11 +225,12 @@ bindsym $mod+Shift+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym $mod+p exec  sh -c 'grim -g "$(slurp -d)" - | wl-copy'
 
 #
 # Status Bar:
 #
+
 # Read `man 5 sway-bar` for more information about this section.
 
 # bar {
