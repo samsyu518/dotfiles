@@ -39,26 +39,25 @@ fi
 
 # if need check version
 # asdf list all python
-asdf install python 3.12.10
-asdf install erlang 26.2.5.11
-asdf install erlang 27.3.3
+asdf install python latest:3.12
+asdf install erlang latest:26
+asdf install erlang latest:27
 asdf install nodejs latest
 asdf install golang latest
 asdf install racket latest
 
-# if [[ $distro_info == *"Arch Linux"* ]]; then
-#     asdf global python system
-#     asdf global erlang system
-#     asdf global nodejs system
-#     asdf global golang system
-# else
-#     asdf global python system
-#     asdf global erlang 26.2.5.11
-#     asdf global nodejs latest
-#     asdf global golang latest
-# fi
+if [[ $distro_info == *"Arch Linux"* ]]; then
+    asdf set -u python system
+    asdf set -u erlang system
+    asdf set -u nodejs system asdf set -u golang system
+else
+    asdf set -u python system
+    asdf set -u erlang 26.2.5.11
+    asdf set -u nodejs latest
+    asdf set -u golang latest
+fi
 #
 # asdf install elixir ref:v1.17.3
 # asdf install elixir ref:v1.18.3
-# asdf global elixir ref:v1.17.3
-# asdf global racket latest
+# asdf set -u elixir ref:v1.17.3
+# asdf set -u racket latest

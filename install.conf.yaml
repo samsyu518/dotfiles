@@ -10,11 +10,14 @@
       recursive: true
 
 - link:
-    ~/.zshrc: ./zsh/zshrc
-    ~/.config/nvim: ./nvim
+    ~/.config/hypr: ./hypr/
+    ~/.config/sway: ./sway/
+    ~/.config/waybar: ./waybar/
     ~/.config/lemonade.toml: ./lemonade.toml
+    ~/.config/nvim: ./nvim
     ~/.config/tmux-powerline: ./tmux-powerline
     ~/.tmux.conf: ./tmux.conf
+    ~/.zshrc: ./zsh/zshrc
     ~/.local/bin/nvim_paste:
       if: 'uname -r | grep -qi microsoft' 
       path: ./nvim_paste

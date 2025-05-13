@@ -70,7 +70,7 @@ zstyle ':omz:update' mode background-alpha      # update automatically without a
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn ng pip archlinux docker
+plugins=(git pip archlinux docker
   aws terraform poetry ansible timer ssh-agent asdf rclone fzf-tab fzf)
 export TIMER_PRECISION=3 # timer plugin percision
 
@@ -212,5 +212,6 @@ add-zsh-hook chpwd python_venv
 
 python_venv
 #macchina
+fastfetch
 
 . "$HOME/.cargo/env"
