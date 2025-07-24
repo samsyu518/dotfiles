@@ -36,6 +36,10 @@ default=$username
 
 [interop]
 enabled=true
+
+[network]
+generateHosts = false
+
 EOF
 echo "passwd here:"
 passwd $username
