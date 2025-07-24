@@ -12,6 +12,7 @@
 - link:
     ~/.config/hypr: ./hypr/
     ~/.config/sway: ./sway/
+    ~/.config/i3: ./i3/
     ~/.config/waybar: ./waybar/
     ~/.config/lemonade.toml: ./lemonade.toml
     ~/.config/nvim: ./nvim
