@@ -22,9 +22,15 @@ sudo echo 'options hid-apple swap_opt_cmd=1' >>/etc/modprobe.d/keyboard.conf
 sudo dracut --regenerate-all --force
 
 dnf copr enable -y solopasha/hyprland
-sudo dnf install -y hyprland hyprland-devel      # If you want to build plugins (use hyprpm)
-sudo dnf install -y hyprpanel hyprpaper hyprlock # hyperland tools
+sudo dnf install -y hyprland hyprland-devel # If you want to build plugins (use hyprpm)
+sudo dnf install -y hyprpaper hyprlock      # hyperland tools
+# sudo dnf install hyprpanel
 sudo dnf install -y Rofi-wayland blueman grim
+sudo dnf install -y aylurs-gtk-shell2 gtk4-devel
+
 # ghostty
 sudo dnf copr enable pgdev/ghostty
 sudo dnf install ghostty-git
+# yazd
+sudo dnf copr enable lihaohong/yazi
+sudo dnf install yazi
