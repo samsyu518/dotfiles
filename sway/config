@@ -1,4 +1,4 @@
-# Default config for sway
+# Default config sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
@@ -31,7 +31,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 output HDMI-A-1 resolution 1920x1080 position -1920,0
-output eDP-1 resolution 1920x1080 position 0,0
+output eDP-1 resolution 3024x1890 position 0,1
 ### Idle configuration
 #
 # Example configuration:
@@ -45,13 +45,16 @@ output eDP-1 resolution 1920x1080 position 0,0
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+# # timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
 exec nm-applet
 exec fcitx5
 exec blueman-applet
+exec firefox-developer-edition
+exec slack
+exec vivaldi-stable
 ### Input configuration
 #
 # Example configuration:
@@ -77,10 +80,10 @@ input "1452:834:Apple_SPI_Trackpad" {
 # Basics:scratchpad
 #
     # Start a terminal
-    bindsym $mod+t exec $term
+    bindsym $mod+return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+d kill
+    bindsym $mod+Shift+q kill
 
     # Start your launcher
     bindsym $mod+r exec $menu
@@ -96,7 +99,7 @@ input "1452:834:Apple_SPI_Trackpad" {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+m exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #

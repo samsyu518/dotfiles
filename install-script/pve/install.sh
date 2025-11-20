@@ -1,1 +1,1 @@
-ansible-galaxy install -r roles/requirements.yml
+ansible-galaxy install --force -r roles/requirements.yml

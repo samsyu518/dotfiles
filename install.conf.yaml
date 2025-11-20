@@ -10,9 +10,12 @@
       recursive: true
 
 - link:
+    ~/.config/dunst: ./dunst/
+    ~/.config/ghostty: ./ghostty/
     ~/.config/hypr: ./hypr/
     ~/.config/sway: ./sway/
     ~/.config/i3: ./i3/
+    ~/.config/i3status: ./i3status/
     ~/.config/waybar: ./waybar/
     ~/.config/lemonade.toml: ./lemonade.toml
     ~/.config/nvim: ./nvim

@@ -17,4 +17,4 @@
       vars:
         pve_group: all
         pve_reboot_on_kernel_update: true
-        pve_zfs_enabled: yes
+        pve_zfs_enabled: true

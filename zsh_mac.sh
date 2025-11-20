@@ -1,8 +1,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 #eval "$(/usr/local/bin/brew shellenv)"
 
-if type brew &>/dev/null
-then
+if type brew &>/dev/null; then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
     autoload -Uz compinit
     compinit
@@ -16,6 +15,5 @@ export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 export PATH="~/development/flutter/bin:$PATH"
 export PATH="/Applications/Racket v8.13/bin:$PATH"
 export LOCATE_PATH="/var/db/locate.database"
-
 
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
