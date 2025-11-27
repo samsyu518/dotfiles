@@ -17,7 +17,6 @@ local opt = vim.opt
 opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-
 opt.relativenumber = true
 
 opt.tabstop = 4

@@ -30,6 +30,8 @@ set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 -- quick move select text
 set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+set("v", "J", ":m '>+1<CR>gv=gv")
+set("v", "K", ":m '<-2<CR>gv=gv")
 set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 
@@ -142,9 +144,13 @@ vim.keymap.set("n", "<leader>bss", function()
   -- vim.bo.filetype = "sql"
   Snacks.scratch({ ft = "sql" })
 end, { desc = "[S]cratchpad [S]QL" })
-vim.keymap.set("n", "<leader>bsn", function()
+vim.keymap.set("n", "<leader>bsm", function()
   Snacks.scratch({ ft = "markdown" })
 end, { desc = "[S]cratchpad [N]ew" })
+
+vim.keymap.set("n", "<leader>bsl", function()
+  Snacks.scratch({ ft = "lua" })
+end, { desc = "[S]cratchpad [l]ua" })
 
 vim.keymap.set("n", "<leader>bsS", function()
   Snacks.scratch.select()

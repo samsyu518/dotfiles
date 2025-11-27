@@ -27,12 +27,13 @@ rtp:prepend(lazypath)
 --
 require("lazy").setup({
 
-  { import = "plugins.treesitter" },
+  { import = "plugins.ai" },
   { import = "plugins.autosave" },
-  { import = "plugins.ui" },
-  { import = "plugins.lsp" },
-  { import = "plugins.editor" },
   { import = "plugins.colorscheme" },
+  { import = "plugins.editor" },
+  { import = "plugins.lsp" },
+  { import = "plugins.treesitter" },
+  { import = "plugins.ui" },
   { import = "plugins.utils" },
   { -- Collection of various small independent plugins/modules
     "echasnovski/mini.nvim",
