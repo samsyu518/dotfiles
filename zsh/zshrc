@@ -71,15 +71,13 @@ zstyle ':omz:update' mode background-alpha      # update automatically without a
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git pip archlinux docker
-  aws terraform poetry ansible timer ssh-agent asdf rclone fzf-tab fzf)
+  aws terraform poetry ansible timer ssh-agent rclone fzf-tab fzf mise)
 export TIMER_PRECISION=3 # timer plugin percision
 
-# asdf
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-
+eval "$($HOME/.local/bin/mise activate zsh)"
 source ~/.private/private_before.sh
 source $ZSH/oh-my-zsh.sh
+
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -156,7 +154,16 @@ if uname -a | grep -q 'Darwin'; then
 else # linux
   if uname -r | grep -q 'microsoft'; then
     alias poweroff="wsl.exe --shutdown Arch"
-    export DISPLAY=$(ip route | grep default | awk '{print $3}'):0.0
+
+    WSL_NET_MODE=$(wslinfo --networking-mode)
+    if wslinfo --networking-mode | grep -q "mirrored"; then
+        # mirror x11
+        # export DISPALY=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'):0.0
+    else
+        # nat x11
+        # export DISPLAY=$(ip route | grep default | awk '{print $3}'):0.0
+    fi
+
     export LIBGL_ALWAYS_INDIRECT=1
     # Start Docker daemon automatically when logging in if not running.
     RUNNING=`ps aux | grep dockerd | grep -v grep`
@@ -215,3 +222,4 @@ python_venv
 fastfetch
 
 . "$HOME/.cargo/env"
+
