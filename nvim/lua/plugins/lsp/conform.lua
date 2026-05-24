@@ -4,13 +4,22 @@ return { -- Autoformat
   cmd = { "ConformInfo" },
   keys = {
     {
-      "<leader>c<F3>",
+      "<leader>fF",
       function()
         require("conform").format({ async = true, lsp_format = "fallback" })
       end,
       mode = "",
       desc = "[F]ormat buffer",
     },
+    -- {
+    --   "<leader>fF",
+    --   -- [[:'<,'>lua require("conform").format()<CR>]],
+    --   function()
+    --     require("conform").format({ async = true, lsp_format = "fallback" })
+    --   end,
+    --   mode = "v",
+    --   desc = "[F]ormat buffer select",
+    -- },
   },
   opts = {
     notify_on_error = false,
@@ -32,9 +41,18 @@ return { -- Autoformat
       lua = { "stylua" },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
+      python = { "ruff_format" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
-      -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
+      json = { "prettierd", "prettier", stop_after_first = true },
+      sql = { "sql_formatter" },
+      -- Use the "*" filetype to run formatters on all filetypes.
+      ["*"] = { "codespell", "trim_whitespace" },
+      -- ["*"] = { "trim_whitespace" },
+      -- Use the "_" filetype to run formatters on filetypes that don't
+      -- have other formatters configured.
     },
+    formatters = {},
   },
 }

@@ -54,17 +54,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- map("<leader>c<F4>", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
 
     -- Find references for the word under your cursor.
-    map("gf", require("telescope.builtin").lsp_references, "[G]oto Re[f]erences")
+    map("gf", Snacks.picker.lsp_references, "[G]oto Re[f]erences")
 
     -- Jump to the implementation of the word under your cursor.
     --  Useful when your language has ways of declaring types without an actual implementation.
-    map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+    map("gI", Snacks.picker.lsp_implementations, "[G]oto [I]mplementation")
 
     -- Jump to the definition of the word under your cursor.
     --  This is where a variable was first declared, or where a function is defined, etc.
     --  To jump back, press <C-t>.
-    map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-    map("<c-b>", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+    map("gd", Snacks.picker.lsp_definitions, "[G]oto [D]definition")
+    map("<c-b>", Snacks.picker.lsp_definitions, "[G]oto [D]definition")
 
     -- WARN: This is not Goto Definition, this is Goto Declaration.
     --  For example, in C this would take you to the header.
@@ -72,16 +72,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Fuzzy find all the symbols in your current document.
     --  Symbols are things like variables, functions, types, etc.
-    map("gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
+    map("gO", Snacks.picker.lsp_symbols, "Open Document Symbols")
 
     -- Fuzzy find all the symbols in your current workspace.
     --  Similar to document symbols, except searches over your entire project.
-    map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
+    map("gW", Snacks.picker.lsp_workspace_symbols, "Open Workspace Symbols")
 
     -- Jump to the type of the word under your cursor.
     --  Useful when you're not sure what type a variable is and you want to see
     --  the definition of its *type*, not where it was *defined*.
-    map("gy", require("telescope.builtin").lsp_type_definitions, "[G]oto T[y]pe Definition")
+    map("gy", Snacks.picker.lsp_type_definitions, "[G]oto T[y]pe Definition")
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
@@ -89,10 +89,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if
-      client
-      and client:supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
-    then
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
       local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
       vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         buffer = event.buf,
@@ -119,7 +116,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- code, if the language server you are using supports them
     --
     -- This may be unwanted, since they displace some of your code
-    if client and client:supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
       vim.lsp.inlay_hint.enable(true)
 
       map("<leader>th", function()
@@ -176,7 +173,7 @@ local capabilities = require("blink.cmp").get_lsp_capabilities()
 local servers = {
   "clangd",
   -- "gopls",
-  -- "pyright",
+  "pyright",
   -- "rust_analyzer",
   -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
   --
@@ -207,24 +204,21 @@ local servers = {
   "lua_ls",
   -- "expert",
 }
-
-local ensure_installed = servers
-vim.list_extend(ensure_installed, {
+install_tools = {
   "stylua", -- Used to format Lua code
   "ruff",
+  "sql-formatter",
   "prettier",
   "clang-format",
-})
+  "codespell",
+}
+local ensure_installed = {}
+vim.list_extend(ensure_installed, install_tools)
+vim.list_extend(ensure_installed, servers)
+
 -- use mason-tool-installer to install all lsp format lint debugger tools
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
-require("mason-lspconfig").setup({
-  -- mason-lspconfig use to translate between `nvim-lspconfig` server names and `mason.nvim` package names  (e.g. `lua_ls <-> lua-language-server`)
-  ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-  automatic_installation = false,
-  automatic_enable = false,
-})
-
+vim.print(servers)
 for _key, server in pairs(servers) do
   vim.lsp.enable(server)
 end

@@ -47,36 +47,81 @@ opt.undolevels = 10000
 
 opt.wildmode = "list:longest,list:full" -- Command-line completion mode
 
+-- vim.g.clipboard = "osc52"
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  -- test osc52 printf "\e]52;c;$(echo "Hello World" | base64)\a"
   opt.clipboard = "unnamedplus"
+  -- test osc52 printf "\e]52;c;$(echo "Hello World" | base64)\a"
+  local function is_ssh()
+    return vim.env.SSH_CONNECTION ~= nil or vim.env.SSH_CLIENT ~= nil or vim.env.SSH_TTY ~= nil
+  end
 
-  local function paste()
+  local function has(cmd)
+    return vim.fn.executable(cmd) == 1
+  end
+
+  local function paste_from_register()
     return {
       vim.fn.split(vim.fn.getreg(""), "\n"),
       vim.fn.getregtype(""),
     }
   end
 
-  if os.getenv("SSH_CLIENT") and not os.getenv("TMUX") then
-    vim.g.clipboard = {
-      name = "OSC52",
-      copy = {
-        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-      },
-
-      paste = {
-        ["+"] = paste,
-        ["*"] = paste,
-      },
-      cache_enabled = true,
-    }
+  local function paste_from_cmd(cmd)
+    local output = vim.fn.systemlist(cmd)
+    return { output, "V" }
+    -- https://neovim.io/doc/user/vimfn.html#getregtype()
   end
+
+  local function system_paste()
+    -- 1. SSH：Neovim register
+    if is_ssh() then
+      return paste_from_register()
+    end
+
+    -- 2. Wayland
+    if vim.env.WAYLAND_DISPLAY and has("wl-paste") then
+      return paste_from_cmd("wl-paste")
+    end
+
+    -- 3. WSL
+    if vim.fn.has("wsl") == 1 and has("nvim_paste") then
+      return paste_from_cmd("nvim_paste")
+    end
+
+    -- 4. X11
+    if vim.env.DISPLAY and has("xclip") then
+      return paste_from_cmd("xclip -selection clipboard -o")
+    end
+
+    -- 5. macOS
+    if vim.fn.has("mac") == 1 and has("pbpaste") then
+      return paste_from_cmd("pbpaste")
+    end
+
+    -- fallback
+    return paste_from_register()
+  end
+
+  -- if os.getenv("SSH_CLIENT") and not os.getenv("TMUX") then
+  vim.g.clipboard = {
+    name = "OSC52",
+    copy = {
+
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+
+    paste = {
+      ["+"] = system_paste,
+      ["*"] = system_paste,
+    },
+    cache_enabled = true,
+  }
+  -- end
 end)
 
 -- Enable break indent
@@ -129,6 +174,7 @@ opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 opt.scrolloff = 10
 
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`

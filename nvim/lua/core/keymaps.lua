@@ -52,10 +52,10 @@ set({ "n", "v" }, "D", "d")
 
 -- quick file replace
 set("n", "<leader>fs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
---[[ 
+--[[
 for test replace vf\;<Space>fs
-c:\program files\vim 
-c:\program files\neovim 
+c:\program files\vim
+c:\program files\neovim
 
 escape(@z, ' \/') escapes the contents of register z .
 <C-r>= is used to evaluate the expression inside escape(@z, ' \/').
@@ -105,6 +105,11 @@ set("n", "<leader>cf", ":set filetype=", { desc = "quick set filetype" })
 
 -- Quit all
 set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+vim.keymap.set("n", "<leader>qr", function()
+  local session_file = vim.fn.stdpath("state") .. "/Session.vim"
+  vim.cmd("mks! " .. vim.fn.fnameescape(session_file))
+  vim.cmd("restart source " .. vim.fn.fnameescape(session_file))
+end, { desc = "Save session and restart with it" })
 
 -- These mappings control the size of splits (height/width)
 set("n", "<M-,>", "<c-w>5<")
@@ -138,21 +143,21 @@ set("n", "<leader>bo", function()
   Snacks.bufdelete.other()
 end, { desc = "Delete Other Buffers" })
 set("n", "<S-w>", vim.cmd.bd, { desc = "buffer delete" })
-set("n", "<leader>bn", vim.cmd.enew, { desc = "buffer new" })
-vim.keymap.set("n", "<leader>bss", function()
+set("n", "<leader>bn", vim.cmd.new, { desc = "buffer new" })
+set("n", "<leader>bss", function()
   -- vim.cmd("new")
   -- vim.bo.filetype = "sql"
   Snacks.scratch({ ft = "sql" })
 end, { desc = "[S]cratchpad [S]QL" })
-vim.keymap.set("n", "<leader>bsm", function()
+set("n", "<leader>bsm", function()
   Snacks.scratch({ ft = "markdown" })
 end, { desc = "[S]cratchpad [N]ew" })
 
-vim.keymap.set("n", "<leader>bsl", function()
+set("n", "<leader>bsl", function()
   Snacks.scratch({ ft = "lua" })
 end, { desc = "[S]cratchpad [l]ua" })
 
-vim.keymap.set("n", "<leader>bsS", function()
+set("n", "<leader>bsS", function()
   Snacks.scratch.select()
 end, { desc = "[S]cratchpad [S]elect" })
 
@@ -161,13 +166,26 @@ set("n", "<leader>bka", "<cmd>%bd|e<cr>", { desc = "buffer kill all" })
 -- save file
 set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
--- better indenting in visual selct
+-- better indenting in visual select
 set("x", "<", "<gv")
 set("x", ">", ">gv")
 
 -- commenting
 set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+
+-- noice nvim
+set("n", "<leader>nl", function()
+  require("noice").cmd("last")
+end, { desc = "noice last" })
+
+set("n", "<leader>nh", function()
+  require("noice").cmd("history")
+end, { desc = "noice history" })
+
+set("n", "<leader>nt", function()
+  require("noice").cmd("telescope")
+end, { desc = "noice telescope" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
