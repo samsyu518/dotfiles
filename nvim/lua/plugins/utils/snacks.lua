@@ -41,9 +41,11 @@ return {
       -- { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
     { "<leader>ff", function()
-      Snacks.picker.files({ cmd ="rg"})
+      Snacks.picker.files({ cmd = "rg", cwd = vim.fn.getcwd() })
     end, desc = "Find Files" },
-      { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep Files" },
+    { "<leader>fg", function()
+      Snacks.picker.grep({ cwd = vim.fn.getcwd() })
+    end, desc = "Grep Files" },
       { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
       { "<leader>fr", function() Snacks.picker.resume() end, desc = "Resume" },
       -- git
