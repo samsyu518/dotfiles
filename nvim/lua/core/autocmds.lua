@@ -19,7 +19,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
   callback = function()
     if #vim.fn.argv() == 1 then
-      local path = vim.fn.expand("%:p:h")
+      local arg = vim.fn.expand(vim.fn.argv(0))
+      local path = vim.fn.isdirectory(arg) == 1 and arg or vim.fn.fnamemodify(arg, ":h")
       if path ~= "" then
         vim.api.nvim_set_current_dir(path)
       end
