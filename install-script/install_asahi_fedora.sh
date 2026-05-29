@@ -37,15 +37,11 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 # develop tools
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 bash ./tools/install_lazygit.sh
-bash ./tools/install_asdf.sh
+curl https://mise.run | sh
 bash ./tools/install_fedora_docker.sh
 
 # dotfile install
 (cd ../ && ./install)
 sudo chsh -s $(which zsh) $USER
-
-. $HOME/.asdf/asdf.sh
-
-bash ./tools/install_asdf_plugins.sh
 
 export PATH="$HOME/.cargo/bin/:$PATH"

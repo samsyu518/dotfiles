@@ -8,6 +8,8 @@ if [ "$arch" == "x86_64" ]; then
     filename="lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 elif [ "$arch" == "aarch64" ]; then
     filename="lazygit_${LAZYGIT_VERSION}_Linux_arm64.tar.gz"
+elif [ "$arch" == "i686" ]; then
+    filename="lazygit_${LAZYGIT_VERSION}_Linux_32-bit.tar.gz"
 else
     echo "Unsupported architecture: $arch"
     exit 1
@@ -16,4 +18,3 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 rm lazygit lazygit.tar.gz
-
