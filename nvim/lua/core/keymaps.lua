@@ -64,7 +64,7 @@ escape(@z, ' \/') escapes the contents of register z .
 set("v", "<leader>fs", [["zy:%s/<C-r>=escape(@z, ' \/')<CR>/<C-r>=escape(@z, ' \/')<CR>/gc<left><left><left>]])
 
 -- quick make file execute
-set("n", "<leader>fx", "<cmd>!chmod +x %<CR>", { silent = true })
+set("n", "<leader>fx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 -- Keymaps for better default experience disable origin leader key space behavior
 set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -132,11 +132,6 @@ set("n", "<S-l>", vim.cmd.bn, { desc = "buffer next" })
 set("n", "<S-h>", vim.cmd.bp, { desc = "buffer previous" })
 -- set("n", "<M-n>", vim.cmd.bn, { desc = "buffer next" })
 -- set("n", "<M-p>", vim.cmd.bp, { desc = "buffer previous" })
-
--- set("n", "<leader>bd", vim.cmd.bd, { desc = "buffer delete" })
-set("n", "<leader>bd", function()
-  Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
 
 -- set("n", "<leader>bo", "<cmd>%bd|e#<cr>", { desc = "Delete Other Buffers" })
 set("n", "<leader>bo", function()
