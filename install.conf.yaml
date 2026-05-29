@@ -11,19 +11,23 @@
 
 - link:
     ~/.config/dunst: ./dunst/
+    ~/.config/ashell: ./ashell/
     ~/.config/ghostty: ./ghostty/
     ~/.config/hypr: ./hypr/
+    ~/.config/niri: ./niri/
     ~/.config/sway: ./sway/
     ~/.config/i3: ./i3/
     ~/.config/i3status: ./i3status/
     ~/.config/waybar: ./waybar/
     ~/.config/lemonade.toml: ./lemonade.toml
     ~/.config/nvim: ./nvim
+    ~/.config/nvim_lazyvim: ./nvim_lazyvim
     ~/.config/tmux-powerline: ./tmux-powerline
+    ~/.config/zellij: ./zellij
     ~/.tmux.conf: ./tmux.conf
     ~/.zshrc: ./zsh/zshrc
     ~/.local/bin/nvim_paste:
-      if: 'uname -r | grep -qi microsoft' 
+      if: 'uname -r | grep -qi microsoft'
       path: ./nvim_paste
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

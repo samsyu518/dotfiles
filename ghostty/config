@@ -44,3 +44,5 @@ font-feature = -liga
 font-feature = -calt
 # font-family = "JetBrains Nerd Font Mono"
 font-family = FiraCode Nerd Font Mono
+
+app-notifications = no-clipboard-copy

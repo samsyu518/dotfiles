@@ -72,10 +72,10 @@ zstyle ':omz:update' mode background-alpha      # update automatically without a
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git pip archlinux docker
   aws terraform poetry ansible timer ssh-agent rclone fzf-tab fzf mise)
-export TIMER_PRECISION=3 # timer plugin percision
-
+export TIMER_PRECISION=3 # timer plugin precision
+# export MISE_VERBOSE=1
 eval "$($HOME/.local/bin/mise activate zsh)"
-source ~/.private/private_before.sh
+[[ $- == *i* ]] && source ~/.private/private_before.sh
 source $ZSH/oh-my-zsh.sh
 
 
@@ -92,6 +92,8 @@ export LANGUAGE=English
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR="vim"
+export VISUAL="vim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -127,7 +129,6 @@ vv() {
 
 alias sshlemon="ssh -R 1234:127.0.0.1:1234"
 alias cvenv="python -m venv .venv"
-export VISUAL="vim"
 
 # Zsh poetry
 export PATH="$HOME/.local/bin:$PATH"
@@ -150,7 +151,7 @@ if echo $TERM | grep -q 'kitty'; then
 fi
 if uname -a | grep -q 'Darwin'; then
   source ~/dotfiles/zsh_mac.sh
-  
+
 else # linux
   if uname -r | grep -q 'microsoft'; then
     alias poweroff="wsl.exe --shutdown Arch"
@@ -158,7 +159,7 @@ else # linux
     WSL_NET_MODE=$(wslinfo --networking-mode)
     if wslinfo --networking-mode | grep -q "mirrored"; then
         # mirror x11
-        # export DISPALY=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'):0.0
+        # export DISPLAY=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'):0.0
     else
         # nat x11
         # export DISPLAY=$(ip route | grep default | awk '{print $3}'):0.0

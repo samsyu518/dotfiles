@@ -17,3 +17,4 @@ export PATH="/Applications/Racket v8.13/bin:$PATH"
 export LOCATE_PATH="/var/db/locate.database"
 
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source <(fzf --zsh)
