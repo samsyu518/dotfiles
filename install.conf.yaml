@@ -19,7 +19,6 @@
     ~/.config/i3: ./i3/
     ~/.config/i3status: ./i3status/
     ~/.config/waybar: ./waybar/
-    ~/.config/lemonade.toml: ./lemonade.toml
     ~/.config/nvim: ./nvim
     ~/.config/nvim_lazyvim: ./nvim_lazyvim
     ~/.config/tmux-powerline: ./tmux-powerline

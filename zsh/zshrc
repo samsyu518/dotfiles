@@ -127,7 +127,6 @@ vv() {
   done
 }
 
-alias sshlemon="ssh -R 1234:127.0.0.1:1234"
 alias cvenv="python -m venv .venv"
 
 # Zsh poetry
