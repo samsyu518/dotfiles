@@ -18,6 +18,17 @@ return { -- Collection of various small independent plugins/modules
 
     require("mini.pairs").setup({})
     require("mini.misc").setup({})
+    require("mini.move").setup()
+    local hipatterns = require("mini.hipatterns")
+    hipatterns.setup({
+      highlighters = {
+        fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+        hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+        todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+        note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+        hex_color = hipatterns.gen_highlighter.hex_color(), -- color preview
+      },
+    })
     -- MiniMisc.setup_auto_root()
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim

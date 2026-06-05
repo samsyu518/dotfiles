@@ -174,6 +174,11 @@ opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 opt.scrolloff = 10
 
+-- Folding: treesitter-based foldexpr is enabled per-buffer in plugins/treesitter.lua.
+-- Keep everything unfolded on open; use za/zR/zM to fold manually.
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)

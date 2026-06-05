@@ -133,6 +133,10 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
       callback = function()
+        -- Route native UI through snacks
+        vim.ui.select = Snacks.picker.select
+        vim.ui.input = Snacks.input
+
         -- Setup some globals for debugging (lazy-loaded)
         _G.dd = function(...)
           Snacks.debug.inspect(...)

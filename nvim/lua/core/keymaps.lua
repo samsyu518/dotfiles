@@ -195,3 +195,5 @@ set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 -- set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+
+require("config.ts_incremental").setup()
