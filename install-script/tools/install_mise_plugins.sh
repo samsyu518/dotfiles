@@ -51,7 +51,12 @@ else
     echo "Unsupported distribution: Unable to determine distribution information."
 fi
 
-mise use --global jq fd ripgrep ripgrep-all fzf just poetry uv lazygit usage rclone restic tmux fastfetch neovim@nightly
+# === mise：CLI ===
+mise use --global jq fd ripgrep ripgrep-all fzf just uv lazygit usage rclone restic tmux fastfetch gdu yazi tree-sitter github:neovim/neovim@nightly
+
+# === python ：mise → uv → python / python tools ===
+uv python install 3.13
+uv tool install poetry --python 3.13 --with poetry-plugin-export --force
 
 mkdir -p ~/.tmux/plugins/
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -66,16 +71,9 @@ rclone genautocomplete zsh ~/.oh-my-zsh/custom/plugins/rclone/_rclone
 # fzf-tab plugin
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 
-poetry self add poetry-plugin-export
-
 mkdir -p ~/.oh-my-zsh/custom/plugins/poetry/
 poetry completions zsh >~/.oh-my-zsh/custom/plugins/poetry/_poetry
 
-mise use --global node
-mise use --global golang
-mise use --global python
-mise use -g erlang@26
-mise use -g elixir@v1.16
-mise use -g php
-mise use -g rust
+# mise program
+mise use -g node golang erlang@28 elixir@v1.18 php rust
 #mise use -g racket
