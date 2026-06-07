@@ -222,3 +222,8 @@ vim.print(servers)
 for _key, server in pairs(servers) do
   vim.lsp.enable(server)
 end
+
+-- racket-langserver is installed via `raco pkg install racket-langserver`
+-- (not a mason package), so enable it outside the mason-driven `servers` list.
+-- Config override lives in lsp/racket_langserver.lua.
+vim.lsp.enable("racket_langserver")
