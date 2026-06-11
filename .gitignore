@@ -1,8 +1,10 @@
 # exclude everything
 private/*
+private-code/*
 
 # exception to the rule
-!private/.init
+!private/.gitkeep
+!private-code/.gitkeep
 
 .tool-versions
 
@@ -12,3 +14,4 @@ private/*
 nvim/.luarc.json
 tmux-powerline/config.sh
 install-script/pve/.ansible/roles
+__pycache__
