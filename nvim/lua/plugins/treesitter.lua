@@ -20,6 +20,7 @@ local ensure_installed = {
   "python",
   "query",
   "racket",
+  "regex",
   "rust",
   "scheme",
   "sql",
