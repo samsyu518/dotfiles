@@ -170,29 +170,29 @@ local capabilities = require("blink.cmp").get_lsp_capabilities()
 --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 --  - settings (table): Override the default settings passed when initializing the server.
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
--- Mason package names (for installation via mason-tool-installer)
--- NOTE: Mason names ≠ nvim-lspconfig names in some cases (e.g. astro-language-server → astro)
-local mason_servers = {
-  "astro-language-server",
+-- { mason_name, lspconfig_name } when they differ; string when identical
+local server_defs = {
+  { "astro-language-server", "astro" }, -- mason install astro-language-server enable astro
   "vtsls",
   "gopls",
   "pyright",
   "rust_analyzer",
+  "svelte",
   "elixirls",
   "lua_ls",
 }
 
--- nvim-lspconfig server names (for vim.lsp.enable)
-local servers = {
-  "astro", -- Mason pkg is "astro-language-server", lspconfig name is "astro"
-  "vtsls",
-  "gopls",
-  "pyright",
-  "rust_analyzer",
-  "elixirls",
-  "lua_ls",
-  "racket_langserver",
-}
+local mason_servers = {}
+local servers = { "racket_langserver" } -- not mason-managed
+for _, def in ipairs(server_defs) do
+  if type(def) == "table" then
+    table.insert(mason_servers, def[1])
+    table.insert(servers, def[2])
+  else
+    table.insert(mason_servers, def)
+    table.insert(servers, def)
+  end
+end
 
 install_tools = {
   "stylua",
