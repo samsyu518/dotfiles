@@ -46,3 +46,5 @@ font-feature = -calt
 font-family = FiraCode Nerd Font Mono
 
 app-notifications = no-clipboard-copy
+
+macos-option-as-alt = true
