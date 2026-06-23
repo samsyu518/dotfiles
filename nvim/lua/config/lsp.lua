@@ -170,60 +170,47 @@ local capabilities = require("blink.cmp").get_lsp_capabilities()
 --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 --  - settings (table): Override the default settings passed when initializing the server.
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-local servers = {
-  -- "clangd",
+-- Mason package names (for installation via mason-tool-installer)
+-- NOTE: Mason names ≠ nvim-lspconfig names in some cases (e.g. astro-language-server → astro)
+local mason_servers = {
+  "astro-language-server",
+  "vtsls",
   "gopls",
   "pyright",
   "rust_analyzer",
-  -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-  --
-  -- Some languages (like typescript) have entire language plugins that can be useful:
-  --    https://github.com/pmizio/typescript-tools.nvim
-  --
-  -- But for many setups, the LSP (`ts_ls`) will work just fine
-  -- ts_ls = {},
-  --
-  -- copilot = {
-  --   -- stylua: ignore
-  --   keys = {
-  --     {
-  --       "<M-]>",
-  --       function() vim.lsp.inline_completion.select({ count = 1 }) end,
-  --       desc = "Next Copilot Suggestion",
-  --       mode = { "i", "n" },
-  --     },
-  --     {
-  --       "<M-[>",
-  --       function() vim.lsp.inline_completion.select({ count = -1 }) end,
-  --       desc = "Prev Copilot Suggestion",
-  --       mode = { "i", "n" },
-  --     },
-  --   },
-  -- },
   "elixirls",
   "lua_ls",
-  -- "expert",
 }
+
+-- nvim-lspconfig server names (for vim.lsp.enable)
+local servers = {
+  "astro", -- Mason pkg is "astro-language-server", lspconfig name is "astro"
+  "vtsls",
+  "gopls",
+  "pyright",
+  "rust_analyzer",
+  "elixirls",
+  "lua_ls",
+  "racket_langserver",
+}
+
 install_tools = {
-  "stylua", -- Used to format Lua code
+  "stylua",
   "ruff",
+  "prettierd",
   "sql-formatter",
   "prettier",
+  "eslint_d",
   "clang-format",
   "codespell",
+  "markdownlint",
 }
+
 local ensure_installed = {}
 vim.list_extend(ensure_installed, install_tools)
-vim.list_extend(ensure_installed, servers)
-
--- use mason-tool-installer to install all lsp format lint debugger tools
+vim.list_extend(ensure_installed, mason_servers)
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-vim.print(servers)
-for _key, server in pairs(servers) do
+
+for _, server in ipairs(servers) do
   vim.lsp.enable(server)
 end
-
--- racket-langserver is installed via `raco pkg install racket-langserver`
--- (not a mason package), so enable it outside the mason-driven `servers` list.
--- Config override lives in lsp/racket_langserver.lua.
-vim.lsp.enable("racket_langserver")

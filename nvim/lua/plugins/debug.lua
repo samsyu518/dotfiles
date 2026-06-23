@@ -104,7 +104,7 @@ return {
     })
 
     -- Python: point dap-python at mason's debugpy venv.
-    -- ponytail: hardcoded mason path; swap to "python3" if you ever drop mason.
+    -- hardcoded mason path; swap to "python3" if you ever drop mason.
     local debugpy = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
     require("dap-python").setup(debugpy)
   end,
