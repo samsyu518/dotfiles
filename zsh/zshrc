@@ -71,7 +71,7 @@ zstyle ':omz:update' mode background-alpha      # update automatically without a
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git pip archlinux docker
-  aws terraform poetry ansible timer ssh-agent rclone fzf-tab fzf mise)
+  aws terraform poetry ansible timer ssh-agent rclone fzf-tab fzf mise rust)
 export TIMER_PRECISION=3 # timer plugin precision
 # export MISE_VERBOSE=1
 eval "$($HOME/.local/bin/mise activate zsh)"
@@ -111,6 +111,7 @@ alias python=python3
 #alias vi=~/.local/nvim/bin/nvim
 alias vi=nvim
 alias v=vim
+alias lazy=lazygit
 
 vv() {
   select config in lazyvim nvchad astronvim default; do
@@ -218,8 +219,14 @@ autoload -U add-zsh-hook
 add-zsh-hook chpwd python_venv
 
 python_venv
-#macchina
 fastfetch
 
 . "$HOME/.cargo/env"
 
+export PATH="$HOME/.config/emacs/bin:$PATH"
+
+# Added by Antigravity CLI installer
+export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
