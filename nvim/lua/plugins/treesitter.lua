@@ -6,13 +6,16 @@
 -- table (highlight/indent/incremental_selection/textobjects) no longer exists.
 
 local ensure_installed = {
+  "astro",
   "bash",
   "c",
+  "css",
   "diff",
   "elixir",
   "go",
   "heex",
   "html",
+  "javascript",
   "lua",
   "luadoc",
   "markdown",
@@ -23,7 +26,9 @@ local ensure_installed = {
   "regex",
   "rust",
   "scheme",
+  "svelte",
   "sql",
+  "typescript",
   "vim",
   "vimdoc",
 }
