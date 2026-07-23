@@ -1,5 +1,8 @@
 -- Conjure: interactive, REPL-driven evaluation for Lisps.
 -- For SICP we use it with Racket (`#lang sicp`) and Scheme files.
+-- For Clojure, Conjure connects to an nREPL server instead of spawning one:
+-- start one with `clj -M:nrepl` and Conjure will pick up the `.nrepl-port`
+-- file automatically from any .clj buffer in that project.
 --
 -- Workflow: open a .rkt buffer, Conjure auto-starts a `racket` REPL, then
 -- evaluate forms in place:
@@ -11,10 +14,10 @@
 -- See `:help conjure` and sicp-learn/setup.md for the full keymap table.
 return {
   "Olical/conjure",
-  ft = { "racket", "scheme" },
+  ft = { "racket", "scheme", "clojure" },
   init = function()
     -- Only enable Conjure's mappings for the filetypes we care about.
-    vim.g["conjure#filetypes"] = { "racket", "scheme" }
+    vim.g["conjure#filetypes"] = { "racket", "scheme", "clojure" }
     -- Use the system `racket` for the stdio REPL client.
     vim.g["conjure#client#racket#stdio#command"] = "racket"
     -- Don't shadow LSP hover (K) with Conjure's doc lookup.

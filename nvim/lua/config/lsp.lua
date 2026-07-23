@@ -173,6 +173,7 @@ local capabilities = require("blink.cmp").get_lsp_capabilities()
 -- { mason_name, lspconfig_name } when they differ; string when identical
 local server_defs = {
   { "astro-language-server", "astro" }, -- mason install astro-language-server enable astro
+  { "clojure-lsp", "clojure_lsp" },
   "vtsls",
   "gopls",
   "pyright",

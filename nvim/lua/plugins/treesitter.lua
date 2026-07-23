@@ -9,6 +9,7 @@ local ensure_installed = {
   "astro",
   "bash",
   "c",
+  "clojure",
   "css",
   "diff",
   "elixir",
