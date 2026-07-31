@@ -15,18 +15,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Free disk space
-        run: |
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
-                      /opt/hostedtoolcache /usr/local/share/boost
-          df -h /  /mnt
-
       - name: Build ISO
         run: |
-          sudo mkdir -p /mnt/iso-work
+          # Measured on ubuntu-latest: 145G total / 109G free on /, and /mnt is
+          # not a separate volume. mkarchiso needs ~15G, so no disk-freeing step.
+          df -h /
+          mkdir -p "$RUNNER_TEMP/iso-work"
           # --privileged: mkarchiso chroots and mounts while building airootfs.
           docker run --rm --privileged \
-            -v "$PWD:/repo" -v /mnt/iso-work:/work \
+            -v "$PWD:/repo" -v "$RUNNER_TEMP/iso-work:/work" \
             -e WORK=/work -e OUT=/repo/out \
             -w /repo archlinux:latest bash -euo pipefail -c '
               pacman -Sy --noconfirm --needed archlinux-keyring
