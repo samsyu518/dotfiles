@@ -1,0 +1,30 @@
+# Extra packages appended to the releng profile's packages.x86_64.
+# Duplicates of releng entries are harmless; listing them explicitly guards
+# against upstream dropping one.
+
+# --- Debian bootstrapping (the reason this ISO exists) ---
+debootstrap
+debian-archive-keyring
+gnupg
+
+# --- partitioning / filesystems ---
+gptfdisk
+parted
+dosfstools
+btrfs-progs
+e2fsprogs
+
+# --- EFI / bootloader repair ---
+efibootmgr
+arch-install-scripts
+
+# --- diagnostics (the missing-NVRAM-entry class of problem) ---
+smartmontools
+pciutils
+usbutils
+
+# --- convenience while installing ---
+git
+rsync
+wget
+tmux

@@ -1,0 +1,13 @@
+
+  Arch Linux live + debootstrap  --  samsyu518/dotfiles
+
+  Arch install   : archinstall  |  pacstrap /mnt base linux linux-firmware
+  Debian install : debootstrap --arch=amd64 trixie /mnt https://deb.debian.org/debian
+
+  Signatures are verified against /usr/share/keyrings/debian-archive-keyring.gpg
+  (debian-archive-keyring is preinstalled -- no --no-check-gpg needed).
+
+  Reminder: after grub-install, confirm the firmware kept the NVRAM entry with
+  `efibootmgr`. Some firmwares drop OS-created entries on the next boot; the
+  fallback is to also place shim at \EFI\Microsoft\Boot\bootmgfw.efi.
+

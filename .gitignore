@@ -15,3 +15,5 @@ nvim/.luarc.json
 tmux-powerline/config.sh
 install-script/pve/.ansible/roles
 __pycache__
+install-script/archiso/work/
+install-script/archiso/out/
