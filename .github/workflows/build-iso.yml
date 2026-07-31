@@ -1,0 +1,51 @@
+name: build-iso
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly rebuild keeps the ISO's packages from drifting against rolling repos.
+    - cron: "0 3 1 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+                      /opt/hostedtoolcache /usr/local/share/boost
+          df -h /  /mnt
+
+      - name: Build ISO
+        run: |
+          sudo mkdir -p /mnt/iso-work
+          # --privileged: mkarchiso chroots and mounts while building airootfs.
+          docker run --rm --privileged \
+            -v "$PWD:/repo" -v /mnt/iso-work:/work \
+            -e WORK=/work -e OUT=/repo/out \
+            -w /repo archlinux:latest bash -euo pipefail -c '
+              pacman -Sy --noconfirm --needed archlinux-keyring
+              pacman -Su --noconfirm --needed archiso
+              bash install-script/archiso/build.sh
+            '
+
+      - name: Checksum
+        id: meta
+        run: |
+          sudo chown -R "$USER" out
+          cd out && sha256sum ./*.iso | tee SHA256SUMS
+          echo "tag=iso-$(date -u +%Y%m%d)" >>"$GITHUB_OUTPUT"
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: Arch live + debootstrap (${{ steps.meta.outputs.tag }})
+          files: |
+            out/*.iso
+            out/SHA256SUMS
