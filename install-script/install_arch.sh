@@ -27,9 +27,7 @@ yay -S --noconfirm emacs fastfetch \
     the_silver_searcher fd locate ttf-fira-code \
     rlwrap clojure leiningen jdk-openjdk \
     yarn nodejs npm htop btop glances less net-tools lsof ncdu go valkey luarocks \
-    inotify-tools bind stylua inetutils php composer xdebug
-
-yay -S --noconfirm lazygit-git google-cloud-cli clj-kondo-bin
+    inotify-tools bind stylua inetutils php composer xdebug pacman-contrib
 
 # font install
 yay -S --noconfirm adobe-source-han-sans-otc-fonts adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts \

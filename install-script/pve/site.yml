@@ -11,9 +11,15 @@
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: "{{ apt_cache_valid_time }}"
-    - name: Install ethtool
+    - name: Install ethtool and Realtek NIC firmware
       ansible.builtin.apt:
-        name: ethtool
+        name:
+          - ethtool
+          # rtl_nic/*.fw -- the vendor PHY tuning that the in-kernel r8169 loads
+          # at probe. Missing it is silent: the link comes up fine and only dmesg
+          # complains. Not used by the out-of-tree r8168 (tables are compiled in).
+          # Ships in non-free-firmware, which trixie/PVE enable by default.
+          - firmware-realtek
         state: present
 
     - name: Create udev rule for Wake-on-LAN

@@ -52,14 +52,28 @@ else
 fi
 
 # === mise：CLI ===
-mise use --global jq fd ripgrep ripgrep-all fzf just uv lazygit usage rclone restic tmux fastfetch gdu yazi tree-sitter github:neovim/neovim@nightly
+mise use --global jq fd ripgrep ripgrep-all fzf just uv delta lazygit usage rclone restic tmux fastfetch gdu yazi zoxide tree-sitter neovim@stable imagemagick@7.1.2-25
+
+mise use -g herdr rtk
+herdr plugin install andrewchng/herdr-sessionizer
+herdr plugin install AltanS/collie
+rtk init -g
+
+mise install github:neovim/neovim@nightly
+
+# mise program
+#mise use -g php
+#mise use -g racket
+mise use -g node golang erlang@28 elixir@v1.18 rust
 
 # === python ：mise → uv → python / python tools ===
 uv python install 3.13
 uv tool install poetry --python 3.13 --with poetry-plugin-export --force
 
-mkdir -p ~/.tmux/plugins/
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+mkdir -p ~/.oh-my-zsh/custom/plugins/poetry/
+poetry completions zsh >~/.oh-my-zsh/custom/plugins/poetry/_poetry
+
+go install github.com/tmuxpack/tpack/cmd/tpack@latest
 
 # gen zsh complete plugins
 mkdir -p ~/.oh-my-zsh/custom/plugins/restic/
@@ -68,12 +82,10 @@ restic generate --zsh-completion ~/.oh-my-zsh/custom/plugins/restic/_restic
 mkdir -p ~/.oh-my-zsh/custom/plugins/rclone/
 rclone genautocomplete zsh ~/.oh-my-zsh/custom/plugins/rclone/_rclone
 
+mkdir -p ~/.oh-my-zsh/custom/plugins/justfile/
+just --completions zsh > ~/.oh-my-zsh/custom/plugins/justfile/_justfile
+
 # fzf-tab plugin
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 
-mkdir -p ~/.oh-my-zsh/custom/plugins/poetry/
-poetry completions zsh >~/.oh-my-zsh/custom/plugins/poetry/_poetry
 
-# mise program
-mise use -g node golang erlang@28 elixir@v1.18 php rust
-#mise use -g racket

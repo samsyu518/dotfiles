@@ -7,7 +7,7 @@ sudo apt-get -y install cmake make build-essential ninja-build gettext \
     wget curl llvm \
     libtool-bin \
     unzip zip p7zip-full xz-utils \
-    ncdu inotify-tools vim zsh git htop redis-tools python-venv
+    ncdu inotify-tools vim zsh git htop redis-tools python3.13-venv
 
 
 # ohmyzsh

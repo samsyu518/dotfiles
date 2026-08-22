@@ -19,10 +19,30 @@ UMask=0077
 
 EOF
 
+# Pick which interface's IPv4 address the GUI should bind to, so it's not
+# reachable from every interface (0.0.0.0) or locked to loopback only.
+mapfile -t ifaces < <(ip -o -4 addr show | awk '$2 != "lo" {print $2, $4}')
+echo "Select the network interface to bind the Syncthing GUI to:"
+echo " 0) 127.0.0.1 (localhost only, access via SSH tunnel)"
+for i in "${!ifaces[@]}"; do
+  printf '%2d) %s\n' "$((i + 1))" "${ifaces[$i]}"
+done
+read -rp "Interface [0-${#ifaces[@]}]: " choice
+if [ "$choice" = "0" ]; then
+  gui_ip="127.0.0.1"
+elif [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "${#ifaces[@]}" ]; then
+  gui_ip="${ifaces[$((choice - 1))]#* }"
+  gui_ip="${gui_ip%%/*}"
+else
+  echo "Invalid selection." >&2
+  exit 1
+fi
+echo "==> Syncthing GUI will bind to ${gui_ip}:8384"
+
 sudo tee -a /etc/systemd/system/syncthing@.service.d/nospam.conf >/dev/null <<EOF
 [Service]
 ExecStart=
-ExecStart=/usr/bin/syncthing serve --no-browser --no-restart --log-level=WARN
+ExecStart=/usr/bin/syncthing serve --no-browser --no-restart --log-level=WARN --gui-address=${gui_ip}:8384
 
 EOF
 

@@ -1,0 +1,21 @@
+# Global ripgrep config -> symlinked to ~/.config/ripgrep/config
+# ripgrep reads exactly ONE config file (RIPGREP_CONFIG_PATH); there is no
+# merging and no per-directory lookup. Per-project exclusions therefore live in
+# a project-local .rgignore / .ignore, which ripgrep discovers on its own.
+
+# Search hidden files / directories (e.g. dotfiles) by default
+--hidden
+
+# Don't respect .gitignore, but keep honoring .ignore / .rgignore so projects
+# can still opt out of paths. (--no-ignore would disable those too.)
+--no-ignore-vcs
+
+--no-heading
+--with-filename
+--line-number
+--column
+
+--glob=!.git
+
+# Because who cares about case!?
+--smart-case

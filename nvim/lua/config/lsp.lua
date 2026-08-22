@@ -174,6 +174,7 @@ local capabilities = require("blink.cmp").get_lsp_capabilities()
 local server_defs = {
   { "astro-language-server", "astro" }, -- mason install astro-language-server enable astro
   { "clojure-lsp", "clojure_lsp" },
+  "clangd",
   "vtsls",
   "gopls",
   "pyright",
