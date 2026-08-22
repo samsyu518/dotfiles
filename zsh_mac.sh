@@ -1,5 +1,4 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
-#eval "$(/usr/local/bin/brew shellenv)"
 
 if type brew &>/dev/null; then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -7,14 +6,12 @@ if type brew &>/dev/null; then
     compinit
 fi
 
-alias ibrew="arch -x86_64 /usr/local/bin/brew"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
 
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
-export PATH="~/development/flutter/bin:$PATH"
-export PATH="/Applications/Racket v8.13/bin:$PATH"
-export LOCATE_PATH="/var/db/locate.database"
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit
+compinit
 
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-source <(fzf --zsh)
