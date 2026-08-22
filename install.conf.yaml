@@ -20,11 +20,13 @@
     ~/.config/i3status: ./i3status/
     ~/.config/waybar: ./waybar/
     ~/.config/nvim: ./nvim
-    ~/.config/nvim_lazyvim: ./nvim_lazyvim
     ~/.config/tmux-powerline: ./tmux-powerline
     ~/.config/zellij: ./zellij
+    ~/.config/herdr/config.toml: ./herdr/config.toml
+    ~/.config/ripgrep/config: ./ripgreprc
     ~/.tmux.conf: ./tmux.conf
     ~/.zshrc: ./zsh/zshrc
+    ~/.zshenv: ./zsh/zshenv
     ~/.local/bin/nvim_paste:
       if: 'uname -r | grep -qi microsoft'
       path: ./nvim_paste

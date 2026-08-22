@@ -1,0 +1,5 @@
+. "$HOME/.cargo/env"
+
+# mise shims: .zshrc's `mise activate` only covers interactive shells
+# Shims here make them resolvable in any inherited env.
+export PATH="$HOME/.local/share/mise/shims:$PATH"
